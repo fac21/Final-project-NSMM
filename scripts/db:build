@@ -3,5 +3,5 @@
 # stop script when an error occurs
 set -e
 
-psql chummyDB -q -f "./database/init.sql"
+psql chummydb -q -f "./database/init.sql"
 echo "Populated database tables"
