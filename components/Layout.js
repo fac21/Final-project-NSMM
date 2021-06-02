@@ -5,7 +5,7 @@ import styles from './layout.module.css'
 //import utilStyles from '../styles/utils.module.css'
 import Header from './header'
 import Footer from './footer'
-// import Nav from '.'
+
 
 const name = 'Chummy'
 export const siteTitle ='Chummy'
@@ -26,7 +26,7 @@ export default function Layout({children}) {
                 <meta name="og:title" content={siteTitle} />
                 <meta name="twitter:card" content="summary_large_image" />
             </Head>
-            {/* <Nav/> */}
+            
             {/* <Header className={styles.header}/> */}
 
             <main classname={styles.main}>{children}</main>
