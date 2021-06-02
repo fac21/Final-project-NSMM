@@ -1,7 +1,7 @@
 import Head from "next/head";
 import Image from "next/image";
 import styles from "../styles/Home.module.css";
-import Footer from "../components/footer";
+import Footer from "../components/Footer";
 import Layout, { siteTitle } from "../components/layout";
 import Link from "next/link";
 
