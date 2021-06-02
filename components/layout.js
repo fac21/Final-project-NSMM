@@ -3,9 +3,9 @@ import Link from 'next/link'
 import Image from 'next/image'
 import styles from './layout.module.css'
 //import utilStyles from '../styles/utils.module.css'
-import Header from '../components/header'
-import Footer from '../components/footer'
-import Nav from '../components/nav'
+import Header from './header'
+import Footer from './footer'
+import Nav from './Nav'
 
 const name = 'Chummy'
 export const siteTitle ='Chummy'
@@ -24,13 +24,13 @@ export default function Layout({children}) {
           )}.png?theme=light&md=0&fontSize=75px&images=https%3A%2F%2Fassets.vercel.com%2Fimage%2Fupload%2Ffront%2Fassets%2Fdesign%2Fnextjs-black-logo.svg`}
         />
                 <meta name="og:title" content={siteTitle} />
-                <meta name="twitter:card" content="summary_large_image" />  
+                <meta name="twitter:card" content="summary_large_image" />
             </Head>
             {/* <Nav/> */}
             {/* <Header className={styles.header}/> */}
 
             <main classname={styles.main}>{children}</main>
-      
+
             <Footer/>
         </div>
     )
