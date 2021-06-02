@@ -1,10 +1,10 @@
 import Head from 'next/head'
 import Link from 'next/link'
 import Image from 'next/image'
-import styles from './layout.module.css'
+import styles from './Layout.module.css'
 //import utilStyles from '../styles/utils.module.css'
-import Header from './header'
-import Footer from './footer'
+import Header from './Header'
+import Footer from './Footer'
 
 
 const name = 'Chummy'
@@ -26,7 +26,7 @@ export default function Layout({children}) {
                 <meta name="og:title" content={siteTitle} />
                 <meta name="twitter:card" content="summary_large_image" />
             </Head>
-            
+
             {/* <Header className={styles.header}/> */}
 
             <main classname={styles.main}>{children}</main>
