@@ -5,7 +5,7 @@ import styles from './layout.module.css'
 //import utilStyles from '../styles/utils.module.css'
 import Header from './header'
 import Footer from './footer'
-import Nav from './Nav'
+// import Nav from '.'
 
 const name = 'Chummy'
 export const siteTitle ='Chummy'
