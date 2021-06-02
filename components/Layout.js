@@ -3,9 +3,9 @@ import Link from 'next/link'
 import Image from 'next/image'
 import styles from './Layout.module.css'
 //import utilStyles from '../styles/utils.module.css'
-import Header from '../components/header'
-//import Footer from '../components/footer'
-import Nav from '../components/nav'
+import Header from '../components/Header'
+//import Footer from '../components/Footer'
+
 
 const name = 'Chummy'
 export const siteTitle ='Chummy'
