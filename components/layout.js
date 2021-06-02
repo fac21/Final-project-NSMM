@@ -4,7 +4,7 @@ import Image from 'next/image'
 import styles from './layout.module.css'
 //import utilStyles from '../styles/utils.module.css'
 import Header from '../components/header'
-import Footer from '../components/footer'
+//import Footer from '../components/footer'
 import Nav from '../components/nav'
 
 const name = 'Chummy'
@@ -31,7 +31,7 @@ export default function Layout({children}) {
 
             <main classname={styles.main}>{children}</main>
       
-            <Footer/>
+            
         </div>
     )
 }
