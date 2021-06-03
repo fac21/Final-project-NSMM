@@ -1,31 +1,32 @@
 import Head from "next/head";
-import Image from "next/image";
 import styles from "../styles/Home.module.css";
-import Footer from "../components/Footer";
-import Layout, { siteTitle } from "../components/Layout";
+import React from "react";
 import Link from "next/link";
-import Nav from '../components/Nav'
+import { signIn, signOut, useSession } from "next-auth/client";
 
 export default function Home() {
+  const [session, loading] = useSession();
   return (
-    <>
-    <Layout home>
-      <div className={styles.container}>
-        <Head>
-          <title>{siteTitle} | Chummy Board</title>
-        </Head>
+    <div className={styles.container}>
+      <Head>
+        <title>Auth Examples</title>
+        <link rel="icon" href="/favicon.ico" />
+      </Head>
 
-        <main className={styles.main}>
-          <h1 className={styles.title}>Vercel is working</h1>
-          <Link href="/createEvent">
-            <a>
-            <button>Create Event</button>
-            </a>
-          </Link>
-        </main>
-      </div>
-    </Layout>
-    <Nav/>
-    </>
+      <main className={styles.main}>
+        {!session && (
+          <>
+            Not signed in <br />
+            <button onClick={signIn}>Sign In</button>
+          </>
+        )}
+        {session && (
+          <>
+            Signed in as {session.user.email} <br />
+            <button onClick={signOut}>sign out</button>
+          </>
+        )}
+      </main>
+    </div>
   );
 }
