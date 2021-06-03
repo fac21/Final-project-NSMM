@@ -22,7 +22,7 @@ export default function Events({ eventData }) {
 
   return (
     <>
-    <Layout>
+    <Layout home>
       <div className={styles.container}>
         <Head>
           <title>{siteTitle} | Chummy Board</title>
@@ -39,7 +39,9 @@ export default function Events({ eventData }) {
               {
           eventsArray.map((meetup) => {
               return (
-                  <Link href="/events/[id]">
+                  <>
+                  <Link href="/events/[id]"
+                  as={`/events/${meetup.id}`}>
                   <a>
                   <div key={meetup.id}>
                       <p>{meetup.user_id}</p>
@@ -50,6 +52,7 @@ export default function Events({ eventData }) {
                   </div>
                   </a>
                   </Link>
+                  </>
               )
           })
         }

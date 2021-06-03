@@ -17,6 +17,14 @@ function getAllEventsData() {
     return res.rows;
   });
 }
+// function getEventById(id) {
+//   const selectEvent = `
+//   SELECT * FROM events WHERE id=$1
+//   `;
+//   return db.query(selectEvent, [id]).then((res) => {
+//     return res.rows[0];
+//   });
+// }
 
 function getAllUserDataByUsername(username) {
   const selectUserDetails = `
@@ -26,6 +34,8 @@ function getAllUserDataByUsername(username) {
     return res.rows[0];
   });
 }
+
+
 
 module.exports = {
   getAllInterestsData,
