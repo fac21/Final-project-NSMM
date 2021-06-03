@@ -16,7 +16,7 @@ export default function Home() {
         </Head>
 
         <main className={styles.main}>
-          <h1 className={styles.title}>Home</h1>
+          <h1 className={styles.title}>Vercel is working</h1>
           <Link href="/createEvent">
             <a>
             <button>Create Event</button>
