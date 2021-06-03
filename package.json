@@ -6,13 +6,19 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
+    "lint": "eslint **/*.js",
+    "lint:style": "",
+    "lint:css": "stylelint \"**/*.css\"",
+    "audit": "",
+    "test:jest": "jest open",
+    "cypress": "cypress open",
     "test": "cypress open",
     "db:build": "./scripts/db:build",
     "db:setup": "./scripts/db:setup"
   },
   "dependencies": {
     "dotenv": "^10.0.0",
-    "next": "10.2.3",
+    "next": "^10.2.3",
     "pg": "^8.6.0",
     "react": "17.0.2",
     "react-dom": "17.0.2"
@@ -22,6 +28,8 @@
     "eslint": "^7.27.0",
     "eslint-config-react-minimal": "^2.0.0",
     "eslint-plugin-import": "^2.23.4",
-    "eslint-plugin-react": "^7.24.0"
+    "eslint-plugin-react": "^7.24.0",
+    "stylelint": "^13.13.1",
+    "stylelint-config-standard": "^22.0.0"
   }
 }
