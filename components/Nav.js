@@ -5,7 +5,7 @@ import styles from "../styles/Home.module.css";
 export default function Nav() {
     return (
         <div className={styles.nav}>
-            <Link href='/'>
+            <Link href='/home'>
                 <a>
                     <Image
                     src='/images/home-alt.svg'
