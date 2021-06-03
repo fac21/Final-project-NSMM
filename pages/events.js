@@ -46,7 +46,7 @@ export default function Events({ eventData }) {
                   <div key={meetup.id}>
                       <p>{meetup.user_id}</p>
                       <p> {meetup.event_title}</p>
-                      <p>{meetup.created_at}</p>
+                      {/* <p>{meetup.created_at}</p> */}
                       <p>{meetup.location}</p>
                       <p>{meetup.time}</p>
                   </div>

@@ -43,7 +43,7 @@ CREATE TABLE events (
     interests_id INTEGER REFERENCES interests(id),
     event_title TEXT NOT NULL,
     event_description TEXT NOT NULL,
-    created_at TIMESTAMP,
+    -- created_at TIMESTAMPTZ NOT NULL DEFAULT CURRENT_TIMESTAMP,
     location TEXT NOT NULL,
     time TEXT NOT NULL
 );
@@ -53,7 +53,7 @@ CREATE TABLE event_response (
     id SERIAL PRIMARY KEY,
     user_id INTEGER REFERENCES users(id) on DELETE CASCADE,
     response_content TEXT NOT NULL,
-    created_at TIMESTAMP,
+    -- created_at TIMESTAMPTZ NOT NULL DEFAULT CURRENT_TIMESTAMP,
     event_id INTEGER REFERENCES events(id)
 );
 
@@ -69,14 +69,14 @@ INSERT INTO interests(id, interest_name, interest_icon) VALUES
 (3, 'Go for a Walk', 'https://storyset.com/illustration/hiking/amico#92E3A9FF&hide=&hide=complete'),
 (4, 'Coding', 'https://storyset.com/illustration/pair-programming/amico#92E3A9FF&hide=&hide=complete');
 
-INSERT INTO events(id, user_id, interests_id, event_title, event_description, created_at, location, time) VALUES
-(1, 1, 2, 'Anyone free for coffee, tues 8th June, 6pm?', 'I will be in Finsbury Park and will have a couple if hours free. Would love to meet up for coffee. Please reply below!', (SELECT CURRENT_TIMESTAMP), 'London', 'evening'),
-(2, 2, 1, 'Drinks this weekend, central London', 'Anyone wanna go for a drink this weekend in central London please let me know below!', (SELECT CURRENT_TIMESTAMP), 'London', 'evening')
+INSERT INTO events(id, user_id, interests_id, event_title, event_description, location, time) VALUES
+(1, 1, 2, 'Anyone free for coffee, tues 8th June, 6pm?', 'I will be in Finsbury Park and will have a couple if hours free. Would love to meet up for coffee. Please reply below!', 'London', 'evening'),
+(2, 2, 1, 'Drinks this weekend, central London', 'Anyone wanna go for a drink this weekend in central London please let me know below!', 'London', 'evening')
 ;
 
-INSERT INTO event_response (id, user_id, response_content, created_at, event_id) VALUES
-(1, 2, 'Hi, I will be there! Looking forward to it :)', (SELECT CURRENT_TIMESTAMP), 1),
-(2, 1, 'Looking forward to having a beer after a long week – see you there!', (SELECT CURRENT_TIMESTAMP), 2)
+INSERT INTO event_response (id, user_id, response_content, event_id) VALUES
+(1, 2, 'Hi, I will be there! Looking forward to it :)', 1),
+(2, 1, 'Looking forward to having a beer after a long week – see you there!', 2)
 ;
 
 COMMIT;
