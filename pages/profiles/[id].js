@@ -27,7 +27,7 @@ export default function Profile() {
       <main>
         <div>
           <h1>You aren't signed in, please sign in first</h1>
-          <Link><a href="/"> Go to log in page</a> </Link>
+          {/* <Link><a href="/"> Go to log in page</a> </Link> */}
         </div>
       </main>
     );

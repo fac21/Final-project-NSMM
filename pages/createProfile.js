@@ -28,9 +28,9 @@ export default function CreateProfile() {
       <main>
         <div>
           <h1>You aren't signed in, please sign in first</h1>
-          <Link>
+          {/* <Link>
             <a href="/"> Go to log in page</a>
-          </Link>
+          </Link> */}
         </div>
       </main>
     );
