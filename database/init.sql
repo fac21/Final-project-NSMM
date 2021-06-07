@@ -1,41 +1,80 @@
 BEGIN;
 
-DROP TABLE IF EXISTS interests, users, sessions, events, event_response CASCADE;
+DROP TABLE IF EXISTS chats, accounts, sessions, users, verification_requests, interests, user_profiles, events, event_response CASCADE;
 
 SET timezone = 'Europe/London';
 
-CREATE TABLE interests (
+CREATE TABLE accounts
+  (
+    id                   SERIAL,
+    compound_id          VARCHAR(255) NOT NULL,
+    user_id              INTEGER NOT NULL,
+    provider_type        VARCHAR(255) NOT NULL,
+    provider_id          VARCHAR(255) NOT NULL,
+    provider_account_id  VARCHAR(255) NOT NULL,
+    refresh_token        TEXT,
+    access_token         TEXT,
+    access_token_expires TIMESTAMPTZ,
+    created_at           TIMESTAMPTZ NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    updated_at           TIMESTAMPTZ NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    PRIMARY KEY (id)
+  );
+
+CREATE TABLE sessions
+  (
+    id            SERIAL,
+    user_id       INTEGER NOT NULL,
+    expires       TIMESTAMPTZ NOT NULL,
+    session_token VARCHAR(255) NOT NULL,
+    access_token  VARCHAR(255) NOT NULL,
+    created_at    TIMESTAMPTZ NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    updated_at    TIMESTAMPTZ NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    PRIMARY KEY (id)
+  );
+
+CREATE TABLE users
+  (
+    id             SERIAL,
+    name           VARCHAR(255),
+    email          VARCHAR(255),
+    email_verified TIMESTAMPTZ,
+    image          TEXT,
+    created_at     TIMESTAMPTZ NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    updated_at     TIMESTAMPTZ NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    PRIMARY KEY (id)
+  );
+
+CREATE TABLE verification_requests
+  (
+    id         SERIAL,
+    identifier VARCHAR(255) NOT NULL,
+    token      VARCHAR(255) NOT NULL,
+    expires    TIMESTAMPTZ NOT NULL,
+    created_at TIMESTAMPTZ NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    updated_at TIMESTAMPTZ NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    PRIMARY KEY (id)
+  );
+
+  CREATE TABLE interests (
     id SERIAL PRIMARY KEY,
     interest_name TEXT NOT NULL,
     interest_icon TEXT
 );
 
-CREATE TABLE users (
+CREATE TABLE user_profiles (
     id SERIAL PRIMARY KEY,
-    first_name VARCHAR(255) NOT NULL,
-    last_name VARCHAR(255) NOT NULL,
+    user_id INTEGER REFERENCES users(id) on DELETE CASCADE,
+    -- name VARCHAR(255) NOT NULL REFERENCES users(name),
     username TEXT UNIQUE NOT NULL,
-    email TEXT UNIQUE NOT NULL,
+    -- email TEXT NOT NULL REFERENCES users(email),
     password TEXT NOT NULL,
     dob DATE NOT NULL,
     gender TEXT NOT NULL,
     interests_id INTEGER[],
-    user_image TEXT NOT NULL,
+    -- user_image TEXT REFERENCES users(image),
     location TEXT NOT NULL,
     bio VARCHAR(255) NOT NULL
 );
-
-CREATE TABLE sessions (
-    sid TEXT PRIMARY KEY,
-    data JSON NOT NULL
-);
-
--- CREATE TABLE chats (
---     id SERIAL PRIMARY KEY,
---     user_id INTEGER REFERENCES users(id) on DELETE CASCADE,
---     chat_messages VARCHAR(500)[],
---     created_at TIMESTAMP
--- );
 
 CREATE TABLE events (
     id SERIAL PRIMARY KEY,
@@ -45,10 +84,9 @@ CREATE TABLE events (
     event_description TEXT NOT NULL,
     -- created_at TIMESTAMPTZ NOT NULL DEFAULT CURRENT_TIMESTAMP,
     location TEXT NOT NULL,
-    -- date DATE NOT NULL,
+    date DATE NOT NULL,
     time TEXT NOT NULL
 );
-
 
 CREATE TABLE event_response (
     id SERIAL PRIMARY KEY,
@@ -58,17 +96,19 @@ CREATE TABLE event_response (
     event_id INTEGER REFERENCES events(id)
 );
 
+INSERT INTO accounts (compound_id, user_id, provider_type, provider_id, provider_account_id, access_token, created_at, updated_at) VALUES ('614e6acd8926044c978b9058b04c370ac109a7e34b4c3d9162c49c5f2d3e32ee', 1, 'oauth', 'auth0', 'auth0|60bdf6116eb8f600688e7939', 'bsYavHs8K_aTyWY1p_t7advKuT7sVhR-', '2021-06-07 11:58:23.815768+01', '2021-06-07 11:58:23.815768+01'),
+('decef9f7a683e28eb9b5538f97f6cf92923c843dd3238fd3ae1dda0f1c5cb422', 2, 'oauth', 'auth0', 'auth0|60bdf6c17634b50069321add', '64lXnBeY53_eaM8YPtph7pUv3PZb8BZq', '2021-06-07 11:59:59.129057+01', '2021-06-07 11:59:59.129057+01');
 
-INSERT INTO users(first_name, last_name, email, username, password, dob, gender, interests_id, user_image, location, bio) VALUES
-('Safia', 'Ali', 's@g.com', 'sali', 'chummy01', '1988-08-18', 'female', (ARRAY[2,3]), 'https://avatars.githubusercontent.com/u/69358550?v=4', 'London', 'I like coding and would like to meet for coffee'),
-('Neville', 'Keemer', 'n@g.com', 'bytesized', 'chummy02', '1975-11-05', 'male', (ARRAY[1,3,4]), 'https://avatars.githubusercontent.com/u/60395899?v=4', 'London', 'I like sport, music and the great outdooors and would like to meet for a gig')
-;
+INSERT INTO users(name, email, image, created_at, updated_at) VALUES
+('fac21testing', 'fac21testing@gmail.com', 'https://s.gravatar.com/avatar/8c6896d94c218a82e69b3d9cb4fd7713?s=480&r=pg&d=https%3A%2F%2Fcdn.auth0.com%2Favatars%2Ffa.png', '2021-06-07 11:58:23.807084+01', '2021-06-07 11:58:23.807084+01'), 
+('fac21testing2', 'fac21testing2@gmail.com', 'https://s.gravatar.com/avatar/c1d1d7338d4df3abb4539002ef96519d?s=480&r=pg&d=https%3A%2F%2Fcdn.auth0.com%2Favatars%2Ffa.png', '2021-06-07 11:59:59.074831+01', '2021-06-07 11:59:59.074831+01');
 
 INSERT INTO interests(interest_name, interest_icon) VALUES
 ('Go for a drink', 'https://storyset.com/illustration/outdoor-party/bro'),
 ('Go for a Coffee', 'https://storyset.com/illustration/social-interaction/bro'),
 ('Go for a Walk', 'https://storyset.com/illustration/hiking/amico#92E3A9FF&hide=&hide=complete'),
-('Coding', 'https://storyset.com/illustration/pair-programming/amico#92E3A9FF&hide=&hide=complete');
+('Coding', 'https://storyset.com/illustration/pair-programming/amico#92E3A9FF&hide=&hide=complete')
+;
 
 INSERT INTO events(user_id, interests_id, event_title, event_description, location, date, time) VALUES
 (1, 2, 'Anyone free for coffee, tues 8th June, 6pm?', 'I will be in Finsbury Park and will have a couple if hours free. Would love to meet up for coffee. Please reply below!', 'London', '08/06/2021', 'afternoon'),
@@ -79,5 +119,33 @@ INSERT INTO event_response (user_id, response_content, event_id) VALUES
 (2, 'Hi, I will be there! Looking forward to it :)', 1),
 (1, 'Looking forward to having a beer after a long week – see you there!', 2)
 ;
+
+INSERT INTO user_profiles(user_id, username, password, dob, gender, interests_id, location, bio) VALUES (1, 'chumUser1', 'chumUser1', '01-01-1980', 'male', (ARRAY[1,2]), 'London', 'I like coding and would like to meet for coffee or a pint')
+;
+
+
+CREATE UNIQUE INDEX compound_id
+  ON accounts(compound_id);
+
+CREATE INDEX provider_account_id
+  ON accounts(provider_account_id);
+
+CREATE INDEX provider_id
+  ON accounts(provider_id);
+
+CREATE INDEX user_id
+  ON accounts(user_id);
+
+CREATE UNIQUE INDEX session_token
+  ON sessions(session_token);
+
+CREATE UNIQUE INDEX access_token
+  ON sessions(access_token);
+
+CREATE UNIQUE INDEX email
+  ON users(email);
+
+CREATE UNIQUE INDEX token
+  ON verification_requests(token);
 
 COMMIT;
