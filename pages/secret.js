@@ -1,8 +1,7 @@
 import { useState, useEffect } from "react";
 import { useSession } from "next-auth/client";
 
-export default function CreateEvent() {
-
+export default function Secret() {
   const [session, loading] = useSession();
   const [content, setContent] = useState();
 
@@ -29,19 +28,12 @@ export default function CreateEvent() {
       </main>
     );
   }
-
   return (
-    <div>
-      <form>
-        <label>Event</label>
-        <input></input>
-        <label>Location</label>
-        <input></input>
-        <label>Date</label>
-        <input></input>
-        <label>Specify details</label>
-        <textarea></textarea>
-      </form>
-    </div>
+    <main>
+      <div>
+        <h1> Protected Page</h1>
+        <p>{content}</p>
+      </div>
+    </main>
   );
 }
