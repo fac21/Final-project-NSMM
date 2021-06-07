@@ -20,7 +20,7 @@ export async function getServerSideProps() {
 
 export default function Events({ eventData, getEventDate }) {
     const eventsArray = JSON.parse(eventData);
-    //const dateOfEventArr = JSON.parse(dateOfEvent);
+    
     
   return (
     <>
@@ -40,6 +40,9 @@ export default function Events({ eventData, getEventDate }) {
           <div className="styles.events">
               {
           eventsArray.map((meetup) => {
+            const gbDate = new Date(meetup.date);
+            const ourDate = new Intl.DateTimeFormat('en-GB', { dateStyle: 'full' }).format(gbDate);
+            console.log(meetup.date, gbDate)
               return (
                   <>
                   <Link href="/events/[id]"
@@ -50,7 +53,7 @@ export default function Events({ eventData, getEventDate }) {
                       <p> {meetup.event_title}</p>
                       {/* <p>{meetup.created_at}</p> */}
                       <p>{meetup.location}</p>
-                      {/* <p>{meetup.date}</p> */}
+                      <p>{ourDate}</p>
                       <p>{meetup.time}</p>
                   </div>
                   </a>

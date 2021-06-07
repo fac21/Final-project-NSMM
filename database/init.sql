@@ -111,8 +111,8 @@ INSERT INTO interests(interest_name, interest_icon) VALUES
 ;
 
 INSERT INTO events(user_id, interests_id, event_title, event_description, location, date, time) VALUES
-(1, 2, 'Anyone free for coffee, tues 8th June, 6pm?', 'I will be in Finsbury Park and will have a couple if hours free. Would love to meet up for coffee. Please reply below!', 'London', '08/06/2021', 'afternoon'),
-(2, 1, 'Drinks this weekend, central London', 'Anyone wanna go for a drink this weekend in central London please let me know below!', 'London', '09/06/2021', 'evening')
+(1, 2, 'Anyone free for coffee, tues 8th June, 6pm?', 'I will be in Finsbury Park and will have a couple if hours free. Would love to meet up for coffee. Please reply below!', 'London', '08-06-2021', 'afternoon'),
+(2, 1, 'Drinks this weekend, central London', 'Anyone wanna go for a drink this weekend in central London please let me know below!', 'London', '09-06-2021', 'evening')
 ;
 
 INSERT INTO event_response (user_id, response_content, event_id) VALUES
