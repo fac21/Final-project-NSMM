@@ -2,7 +2,7 @@
 import Link from "next/link";
 import { useState, useEffect } from "react";
 import { useSession } from "next-auth/client";
-import Nav from "../components/Nav";
+import Nav from "../../components/Nav";
 import Layout, { siteTitle } from "../components/Layout";
 
 export default function Profile() {
