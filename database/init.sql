@@ -45,6 +45,7 @@ CREATE TABLE events (
     event_description TEXT NOT NULL,
     -- created_at TIMESTAMPTZ NOT NULL DEFAULT CURRENT_TIMESTAMP,
     location TEXT NOT NULL,
+    -- date DATE NOT NULL,
     time TEXT NOT NULL
 );
 
@@ -63,20 +64,20 @@ INSERT INTO users(first_name, last_name, email, username, password, dob, gender,
 ('Neville', 'Keemer', 'n@g.com', 'bytesized', 'chummy02', '1975-11-05', 'male', (ARRAY[1,3,4]), 'https://avatars.githubusercontent.com/u/60395899?v=4', 'London', 'I like sport, music and the great outdooors and would like to meet for a gig')
 ;
 
-INSERT INTO interests(id, interest_name, interest_icon) VALUES
-(1, 'Go for a drink', 'https://storyset.com/illustration/outdoor-party/bro'),
-(2, 'Go for a Coffee', 'https://storyset.com/illustration/social-interaction/bro'),
-(3, 'Go for a Walk', 'https://storyset.com/illustration/hiking/amico#92E3A9FF&hide=&hide=complete'),
-(4, 'Coding', 'https://storyset.com/illustration/pair-programming/amico#92E3A9FF&hide=&hide=complete');
+INSERT INTO interests(interest_name, interest_icon) VALUES
+('Go for a drink', 'https://storyset.com/illustration/outdoor-party/bro'),
+('Go for a Coffee', 'https://storyset.com/illustration/social-interaction/bro'),
+('Go for a Walk', 'https://storyset.com/illustration/hiking/amico#92E3A9FF&hide=&hide=complete'),
+('Coding', 'https://storyset.com/illustration/pair-programming/amico#92E3A9FF&hide=&hide=complete');
 
-INSERT INTO events(id, user_id, interests_id, event_title, event_description, location, time) VALUES
-(1, 1, 2, 'Anyone free for coffee, tues 8th June, 6pm?', 'I will be in Finsbury Park and will have a couple if hours free. Would love to meet up for coffee. Please reply below!', 'London', 'evening'),
-(2, 2, 1, 'Drinks this weekend, central London', 'Anyone wanna go for a drink this weekend in central London please let me know below!', 'London', 'evening')
+INSERT INTO events(user_id, interests_id, event_title, event_description, location, date, time) VALUES
+(1, 2, 'Anyone free for coffee, tues 8th June, 6pm?', 'I will be in Finsbury Park and will have a couple if hours free. Would love to meet up for coffee. Please reply below!', 'London', '08/06/2021', 'afternoon'),
+(2, 1, 'Drinks this weekend, central London', 'Anyone wanna go for a drink this weekend in central London please let me know below!', 'London', '09/06/2021', 'evening')
 ;
 
-INSERT INTO event_response (id, user_id, response_content, event_id) VALUES
-(1, 2, 'Hi, I will be there! Looking forward to it :)', 1),
-(2, 1, 'Looking forward to having a beer after a long week – see you there!', 2)
+INSERT INTO event_response (user_id, response_content, event_id) VALUES
+(2, 'Hi, I will be there! Looking forward to it :)', 1),
+(1, 'Looking forward to having a beer after a long week – see you there!', 2)
 ;
 
 COMMIT;

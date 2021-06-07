@@ -2,7 +2,7 @@ import Head from "next/head";
 import styles from "../../styles/Home.module.css";
 import Layout, { siteTitle } from "../../components/Layout";
 import Nav from '../../components/Nav';
-import { getAllEventsData, getEventById } from "../../database/model";
+import { getAllEventsData, getEventById, getAllEventResponses } from "../../database/model";
 
 
 export async function getStaticPaths() {
@@ -13,7 +13,7 @@ export async function getStaticPaths() {
       };
     });
     
-  
+
     return {
         paths,
         fallback: false,
@@ -44,9 +44,14 @@ console.log(eventData)
                 </Head>
                 <main className={styles.main}>
                     <div key={eventData.id}>
-                        <h1>Single event</h1>
-                        <p>{eventData.event_description}</p>
+                        <h1>{eventData.event_title}</h1>
+                        <p>{eventData.event_description}</p> 
                     </div>
+                    <form action='/events'>
+                      <label htmlFor="response"></label>
+                      <textarea id='response' name="response" rows='6' cols='50' placeholder="Type your response here"></textarea>
+                      <button type="submit">Submit</button>
+                      </form> 
                 </main>
             </div>
         </Layout>

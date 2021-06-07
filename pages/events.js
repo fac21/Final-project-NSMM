@@ -10,16 +10,18 @@ import { getAllEventsData } from "../database/model";
 export async function getServerSideProps() {
     const allEvents = await getAllEventsData();
     const eventData = JSON.stringify(allEvents);
+    // const singleEvent = await getEventDate();
+    // const dateOfEvent = JSON.stringify(singleEvent);
 
     return {
         props: {eventData},
     };
 }
 
-export default function Events({ eventData }) {
+export default function Events({ eventData, getEventDate }) {
     const eventsArray = JSON.parse(eventData);
-    console.log(eventsArray);
-
+    //const dateOfEventArr = JSON.parse(dateOfEvent);
+    
   return (
     <>
     <Layout home>
@@ -48,6 +50,7 @@ export default function Events({ eventData }) {
                       <p> {meetup.event_title}</p>
                       {/* <p>{meetup.created_at}</p> */}
                       <p>{meetup.location}</p>
+                      {/* <p>{meetup.date}</p> */}
                       <p>{meetup.time}</p>
                   </div>
                   </a>
