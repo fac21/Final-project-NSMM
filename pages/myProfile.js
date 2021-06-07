@@ -5,7 +5,7 @@ import { useSession } from "next-auth/client";
 import Nav from "../components/Nav";
 import Layout, { siteTitle } from "../components/Layout";
 
-export default function Settings() {
+export default function MyProfile() {
   const [session, loading] = useSession();
   const [content, setContent] = useState();
 
@@ -39,12 +39,13 @@ export default function Settings() {
       </Layout>
     );
   }
+
   return (
     <Layout>
       <main>
         <div>
-          <h1>Settings Page</h1>
-          <p>(Need to Insert ability to change password and log out button)</p>
+          <h1>My (Insert username dynamically) Profile</h1>
+          <p>(Need to insert logged on user's profile data dynamically)</p>
         </div>
       </main>
       <Nav />
