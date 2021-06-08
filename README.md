@@ -1,8 +1,12 @@
 This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
-## Getting Started
 
-First, run the development server:
+# **💾 How to install the project**
+
+1. `git clone`
+2. cd into the directory on your computer
+3. run `npm i` to install node modules
+4. To run the development server run:
 
 ```bash
 npm run dev
@@ -10,7 +14,36 @@ npm run dev
 yarn dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+5. Open http://localhost:3000 with your browser to see the result.
+6. You can do `npm run test` to run tests in cypress
+7. To access postgres database.
+- Copy the .env.example file in the root directory to .env(which will be ignored by Git):
+
+`cp .env.example .env`
+- DATABASE_URL should point to your local database and be in the form `postgres://<user>:<password>@localhost:<PORT>/<database_name>`
+- Change the permissions of the automated two Bash scripts (scripts/db:setup and scripts/db:build) to make them executable: `chmod +x ./scripts/your-filename`.
+- Run these via npm scripts: `npm run db:setup` and `npm run db:build`
+8. Configure your local environment
+Add details for one or more providers (e.g. Google, Twitter, GitHub, Email, etc)or an [Auth0 account](https://next-auth.js.org/providers/auth0) [SIGN UP](https://auth0.com/signup) and add secrets to .env file.
+Set up an Auth0 account
+If you haven't already signed up for an Auth0 account, do so (it's free). You can either use username and password or log in with a social provider (such as Facebook, Google, or Apple).
+
+
+```javascript=
+DATABASE_URL='postgres://exampleuser:123@localhost:5432/example'
+
+AUTH0_CLIENT_ID =
+AUTH0_CLIENT_SECRET =
+AUTH0_DOMAIN =
+
+AUTH0_BASE_URL = http://localhost:3000/
+NEXTAUTH_URL = http://localhost:3000/
+
+
+DATABASE_USER =
+DATABASE_PASSWORD =
+DATABASE_NAME =
+```
 
 You can start editing the page by modifying `pages/index.js`. The page auto-updates as you edit the file.
 

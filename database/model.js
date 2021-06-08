@@ -2,7 +2,7 @@ const db = require("./connection");
 
 function getAllInterestsData() {
   const selectInterests = `
-  SELECT * FROM interests 
+  SELECT * FROM interests
   `;
   return db.query(selectInterests).then((res) => {
     return res.rows;
@@ -11,21 +11,12 @@ function getAllInterestsData() {
 
 function getAllEventsData() {
   const selectEvents = `
-  SELECT * FROM events 
+  SELECT * FROM events
   `;
   return db.query(selectEvents).then((res) => {
     return res.rows;
   });
 }
-
-// function getEventDate() {
-//   const selectDate = `
-//   SELECT CONVERT(date, '2017-08-25', 103) FROM events
-// `;
-// return db.query(selectDate).then((res) => {
-//   return res.rows;
-// });
-// }
 
 function getEventById(id) {
   const selectEvent = `
@@ -41,6 +32,16 @@ function getAllUserDataByUsername(username) {
   SELECT * FROM users WHERE username=$1
   `;
   return db.query(selectUserDetails, [username]).then((res) => {
+    return res.rows[0];
+  });
+}
+
+
+function getUserDataById(id) {
+  const selectUserDetailsFromUserTable = `
+  SELECT * FROM users WHERE id=$1
+  `;
+  return db.query(selectUserDetailsFromUserTable, [id]).then((res) => {
     return res.rows[0];
   });
 }
@@ -62,5 +63,5 @@ module.exports = {
   getEventById,
   getAllUserDataByUsername,
   getAllEventResponses,
-  //getEventDate,
+  getUserDataById
 };
