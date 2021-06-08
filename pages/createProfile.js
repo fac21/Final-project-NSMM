@@ -25,14 +25,18 @@ export default function CreateProfile() {
 
   if (!session) {
     return (
-      <main>
-        <div>
-          <h1>You aren't signed in, please sign in first</h1>
-          {/* <Link>
-            <a href="/"> Go to log in page</a>
-          </Link> */}
-        </div>
-      </main>
+      <Layout>
+        <main>
+          <div>
+            <h1>You aren't signed in, please sign in first</h1>
+            <button>
+              <Link href="/">
+                <a>Click here for the log in page</a>
+              </Link>
+            </button>
+          </div>
+        </main>
+      </Layout>
     );
   }
   return (

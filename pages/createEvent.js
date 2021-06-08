@@ -1,8 +1,8 @@
 import { useState, useEffect } from "react";
 import { useSession } from "next-auth/client";
 import Nav from "../components/Nav";
-import Layout from "../components/Layout";
-// import styles from "../styles/globals.css"
+import Layout, { siteTitle } from "../components/Layout";
+import Link from "next/link";
 
 export default function CreateEvent() {
   const [session, loading] = useSession();
@@ -24,11 +24,18 @@ export default function CreateEvent() {
 
   if (!session) {
     return (
-      <main>
-        <div>
-          <h1>You aren't signed in, please sign in first</h1>
-        </div>
-      </main>
+      <Layout>
+        <main>
+          <div>
+            <h1>You aren't signed in, please sign in first</h1>
+            <button>
+              <Link href="/">
+                <a>Click here for the log in page</a>
+              </Link>
+            </button>
+          </div>
+        </main>
+      </Layout>
     );
   }
 

@@ -2,10 +2,10 @@
 import Link from "next/link";
 import { useState, useEffect } from "react";
 import { useSession } from "next-auth/client";
-import Nav from "../../components/Nav";
-import Layout, { siteTitle } from "../../components/Layout";
+import Nav from "../components/Nav";
+import Layout, { siteTitle } from "../components/Layout";
 
-export default function Profile() {
+export default function MyProfile() {
   const [session, loading] = useSession();
   const [content, setContent] = useState();
 
@@ -39,12 +39,13 @@ export default function Profile() {
       </Layout>
     );
   }
+
   return (
     <Layout>
       <main>
         <div>
-          <h1> "Name" Chummy profile ...</h1>
-          <p>(Need to insert profile of searched user(s) dynamically)</p>
+          <h1>My (Insert username dynamically) Profile</h1>
+          <p>(Need to insert logged on user's profile data dynamically)</p>
         </div>
       </main>
       <Nav />

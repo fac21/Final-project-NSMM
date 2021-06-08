@@ -11,8 +11,11 @@ import { useSession } from "next-auth/client";
 export async function getServerSideProps() {
   const allEvents = await getAllEventsData();
   const eventData = JSON.stringify(allEvents);
+<<<<<<< HEAD
   // const singleEvent = await getEventDate();
   // const dateOfEvent = JSON.stringify(singleEvent);
+=======
+>>>>>>> 755f8d1e083cbb7bdf0f0cd26d651c08bc921a6a
 
   return {
     props: { eventData },
@@ -39,11 +42,18 @@ export default function Events({ eventData }) {
 
   if (!session) {
     return (
-      <main>
-        <div>
-          <h1>You aren't signed in, please sign in first</h1>
-        </div>
-      </main>
+      <Layout>
+        <main>
+          <div>
+            <h1>You aren't signed in, please sign in first</h1>
+            <button>
+              <Link href="/">
+                <a>Click here for the log in page</a>
+              </Link>
+            </button>
+          </div>
+        </main>
+      </Layout>
     );
   }
 
@@ -58,13 +68,14 @@ export default function Events({ eventData }) {
           </Head>
 
           <main className={styles.main}>
-            <h1 className={styles.title}>Events</h1>
+            <h1 className={styles.title}>Chummy Event Board</h1>
             <Link href="/createEvent">
               <a>
-                <button>Create Event</button>
+                <button>Create A New Event</button>
               </a>
             </Link>
-            <div className={styles.events}>
+            <p>(Need to insert a filter)</p>
+            <div className="styles.events">
               {eventsArray.map((meetup) => {
                 const gbDate = new Date(meetup.date);
                 const ourDate = new Intl.DateTimeFormat("en-GB", {
@@ -91,8 +102,8 @@ export default function Events({ eventData }) {
             </div>
           </main>
         </div>
+        <Nav />
       </Layout>
-      <Nav />
     </>
   );
 }

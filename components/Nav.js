@@ -21,18 +21,18 @@ export default function Nav() {
           <Image
             src="/images/calendar-add.svg"
             className=""
-            alt="Chat"
+            alt="Create Event"
             width={24}
             height={24}
           />
         </a>
       </Link>
-      <Link href="/profile">
+      <Link href="/myProfile">
         <a>
           <Image
             src="/images/user.svg"
             className=""
-            alt="Profile"
+            alt="My Profile"
             width={24}
             height={24}
           />
