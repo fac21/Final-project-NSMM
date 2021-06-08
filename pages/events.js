@@ -11,12 +11,7 @@ import { useSession } from "next-auth/client";
 export async function getServerSideProps() {
   const allEvents = await getAllEventsData();
   const eventData = JSON.stringify(allEvents);
-<<<<<<< HEAD
-  // const singleEvent = await getEventDate();
-  // const dateOfEvent = JSON.stringify(singleEvent);
-=======
->>>>>>> 755f8d1e083cbb7bdf0f0cd26d651c08bc921a6a
-
+  
   return {
     props: { eventData },
   };
