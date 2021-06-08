@@ -74,6 +74,11 @@ export default function Events({ eventData }) {
             <p>(Need to insert a filter)</p>
             <div className="styles.events">
               {eventsArray.map((meetup) => {
+                const gbDate = new Date(meetup.date);
+                const ourDate = new Intl.DateTimeFormat("en-GB", {
+                  dateStyle: "full",
+                }).format(gbDate);
+                console.log(meetup.date, gbDate);
                 return (
                   <>
                     <Link href="/events/[id]" as={`/events/${meetup.id}`}>

@@ -6,7 +6,6 @@
   justify-content: center;
   align-items: center;
   height: 100vh;
-  
 }
 
 .main {
@@ -25,14 +24,19 @@
   display: flex;
   justify-content: space-around;
   align-items: center;
-  background-color: #31CDB5;
+  background-color: #31cdb5;
   position: sticky;
+  margin-top: auto;
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  overflow: hidden;
 }
 
 .events {
   display: flex;
   justify-content: center;
-  align-items:center;
+  align-items: center;
 }
 
 .footer a {
@@ -40,7 +44,7 @@
   justify-content: center;
   align-items: center;
   flex-grow: 1;
-  background-color: #31CDB5;
+  background-color: #31cdb5;
 }
 
 .title a {
