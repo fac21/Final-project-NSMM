@@ -84,6 +84,7 @@ CREATE TABLE events (
     event_description TEXT NOT NULL,
     -- created_at TIMESTAMPTZ NOT NULL DEFAULT CURRENT_TIMESTAMP,
     location TEXT NOT NULL,
+    date DATE NOT NULL,
     time TEXT NOT NULL
 );
 
@@ -102,23 +103,26 @@ INSERT INTO users(name, email, image, created_at, updated_at) VALUES
 ('fac21testing', 'fac21testing@gmail.com', 'https://s.gravatar.com/avatar/8c6896d94c218a82e69b3d9cb4fd7713?s=480&r=pg&d=https%3A%2F%2Fcdn.auth0.com%2Favatars%2Ffa.png', '2021-06-07 11:58:23.807084+01', '2021-06-07 11:58:23.807084+01'), 
 ('fac21testing2', 'fac21testing2@gmail.com', 'https://s.gravatar.com/avatar/c1d1d7338d4df3abb4539002ef96519d?s=480&r=pg&d=https%3A%2F%2Fcdn.auth0.com%2Favatars%2Ffa.png', '2021-06-07 11:59:59.074831+01', '2021-06-07 11:59:59.074831+01');
 
-INSERT INTO interests(id, interest_name, interest_icon) VALUES
-(1, 'Go for a drink', 'https://storyset.com/illustration/outdoor-party/bro'),
-(2, 'Go for a Coffee', 'https://storyset.com/illustration/social-interaction/bro'),
-(3, 'Go for a Walk', 'https://storyset.com/illustration/hiking/amico#92E3A9FF&hide=&hide=complete'),
-(4, 'Coding', 'https://storyset.com/illustration/pair-programming/amico#92E3A9FF&hide=&hide=complete');
-
-INSERT INTO user_profiles(id, user_id, username, password, dob, gender, interests_id, location, bio) VALUES (1, 1, 'chumUser1', 'chumUser1', '01-01-1980', 'male', (ARRAY[1,2]), 'London', 'I like coding and would like to meet for coffee or a pint');
-
-INSERT INTO events(id, user_id, interests_id, event_title, event_description, location, time) VALUES
-(1, 1, 2, 'Anyone free for coffee, tues 8th June, 6pm?', 'I will be in Finsbury Park and will have a couple if hours free. Would love to meet up for coffee. Please reply below!', 'London', 'evening'),
-(2, 1, 1, 'Drinks this weekend, central London', 'Anyone wanna go for a drink this weekend in central London please let me know below!', 'London', 'evening')
+INSERT INTO interests(interest_name, interest_icon) VALUES
+('Go for a drink', 'https://storyset.com/illustration/outdoor-party/bro'),
+('Go for a Coffee', 'https://storyset.com/illustration/social-interaction/bro'),
+('Go for a Walk', 'https://storyset.com/illustration/hiking/amico#92E3A9FF&hide=&hide=complete'),
+('Coding', 'https://storyset.com/illustration/pair-programming/amico#92E3A9FF&hide=&hide=complete')
 ;
 
-INSERT INTO event_response (id, user_id, response_content, event_id) VALUES
-(1, 1, 'Hi, I will be there! Looking forward to it :)', 1),
-(2, 1, 'Looking forward to having a beer after a long week – see you there!', 2)
+INSERT INTO events(user_id, interests_id, event_title, event_description, location, date, time) VALUES
+(1, 2, 'Anyone free for coffee, tues 8th June, 6pm?', 'I will be in Finsbury Park and will have a couple if hours free. Would love to meet up for coffee. Please reply below!', 'London', '2021-06-08', 'afternoon'),
+(2, 1, 'Drinks this weekend, central London', 'Anyone wanna go for a drink this weekend in central London please let me know below!', 'London', '2021-06-09', 'evening')
 ;
+
+INSERT INTO event_response (user_id, response_content, event_id) VALUES
+(2, 'Hi, I will be there! Looking forward to it :)', 1),
+(1, 'Looking forward to having a beer after a long week – see you there!', 2)
+;
+
+INSERT INTO user_profiles(user_id, username, password, dob, gender, interests_id, location, bio) VALUES (1, 'chumUser1', 'chumUser1', '1980-01-01', 'male', (ARRAY[1,2]), 'London', 'I like coding and would like to meet for coffee or a pint')
+;
+
 
 CREATE UNIQUE INDEX compound_id
   ON accounts(compound_id);

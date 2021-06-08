@@ -14,26 +14,26 @@ export async function getStaticPaths() {
         params: { id: id.toString()},
       };
     });
-
-
     return {
         paths,
         fallback: false,
     };
   }
 
-
 export async function getStaticProps({ params }) {
     const eventData = await getEventById(params.id);
-
-    console.log(eventData);
+    const eventDataStr = JSON.stringify(eventData);
+    console.log(eventDataStr);
     return {
-      props: { eventData },
+      props: { eventDataStr },
     };
   }
 
-
-export default function Event( {eventData} ) {
+export default function Event( {eventDataStr} ) {
+    const eventDataParsed = JSON.parse(eventDataStr);
+ 
+    const gbDate = new Date(eventDataParsed.date);
+    const ourDate = new Intl.DateTimeFormat('en-GB', { dateStyle: 'full' }).format(gbDate);
 
   const [session, loading] = useSession();
   const [content, setContent] = useState();
@@ -61,9 +61,7 @@ export default function Event( {eventData} ) {
       </main>
     );
   }
-// const eventArray = JSON.parse(eventData);
-console.log(eventData)
-    // console.log("eventArr", eventArray);
+  
     return (
         <>
         <Layout>
@@ -72,10 +70,16 @@ console.log(eventData)
                     <title>{siteTitle.title} | Single event</title>
                 </Head>
                 <main className={styles.main}>
-                    <div key={eventData.id}>
-                        <h1>Single event</h1>
-                        <p>{eventData.event_description}</p>
+                    <div key={eventDataParsed.id}>
+                        <h1>{eventDataParsed.event_title}</h1>
+                        <p>{eventDataParsed.event_description}</p> 
+                        <p>{ourDate}</p>
                     </div>
+                    <form action='/events'>
+                      <label htmlFor="response"></label>
+                      <textarea id='response' name="response" rows='6' cols='50' placeholder="Type your response here"></textarea>
+                      <button type="submit">Submit</button>
+                      </form> 
                 </main>
             </div>
         </Layout>

@@ -17,6 +17,16 @@ function getAllEventsData() {
     return res.rows;
   });
 }
+
+// function getEventDate() {
+//   const selectDate = `
+//   SELECT CONVERT(date, '2017-08-25', 103) FROM events
+// `;
+// return db.query(selectDate).then((res) => {
+//   return res.rows;
+// });
+// }
+
 function getEventById(id) {
   const selectEvent = `
   SELECT * FROM events WHERE id=$1
@@ -35,9 +45,14 @@ function getAllUserDataByUsername(username) {
   });
 }
 
-// function getAllEventResponses() {
-
-// }
+ function getAllEventResponses() {
+  const selectEventResponse = `
+  SELECT * FROM event_response WHERE event_id=$1
+  `;
+  return db.query(selectEventResponse, [event_id]).then((res) => {
+    return res.rows;
+  });
+ }
 
 
 
@@ -46,4 +61,6 @@ module.exports = {
   getAllEventsData,
   getEventById,
   getAllUserDataByUsername,
+  getAllEventResponses,
+  //getEventDate,
 };

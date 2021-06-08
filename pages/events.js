@@ -12,6 +12,8 @@ import { useSession } from "next-auth/client";
 export async function getServerSideProps() {
     const allEvents = await getAllEventsData();
     const eventData = JSON.stringify(allEvents);
+    // const singleEvent = await getEventDate();
+    // const dateOfEvent = JSON.stringify(singleEvent);
 
     return {
         props: {eventData},
@@ -47,13 +49,8 @@ export default function Events({ eventData }) {
    );
  }
 
-
-
-
-
     const eventsArray = JSON.parse(eventData);
-    console.log(eventsArray);
-
+      
   return (
     <>
     <Layout home>
@@ -72,6 +69,9 @@ export default function Events({ eventData }) {
           <div className="styles.events">
               {
           eventsArray.map((meetup) => {
+            const gbDate = new Date(meetup.date);
+            const ourDate = new Intl.DateTimeFormat('en-GB', { dateStyle: 'full' }).format(gbDate);
+            console.log(meetup.date, gbDate)
               return (
                   <>
                   <Link href="/events/[id]"
@@ -82,6 +82,7 @@ export default function Events({ eventData }) {
                       <p> {meetup.event_title}</p>
                       {/* <p>{meetup.created_at}</p> */}
                       <p>{meetup.location}</p>
+                      <p>{ourDate}</p>
                       <p>{meetup.time}</p>
                   </div>
                   </a>
