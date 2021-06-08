@@ -19,7 +19,7 @@ export default function Nav() {
       <Link href="/createEvent">
         <a>
           <Image
-            src="/images/chat.svg"
+            src="/images/calendar-add.svg"
             className=""
             alt="Create Event"
             width={24}

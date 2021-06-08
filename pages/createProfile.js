@@ -8,7 +8,7 @@ import { options, useSession } from "next-auth/client";
 export default function CreateProfile() {
   const [session, loading] = useSession();
   const [content, setContent] = useState();
-
+  console.log("hi", session);
   useEffect(() => {
     const fetchData = async () => {
       const res = await fetch("/api/secret");
@@ -43,7 +43,7 @@ export default function CreateProfile() {
     <Layout createProfile>
       <main>
         <div>
-          <h1> Create a Chummy Profile </h1>
+          <h1>Hey {session.user.name}, create your user profile </h1>
           <p> Complete the following: </p>
         </div>
         <form>
@@ -108,3 +108,21 @@ export default function CreateProfile() {
     </Layout>
   );
 }
+
+// export const getServerSideProps = useSession(async function ({ req, res }) {
+//   // Get the user's session based on the request
+//   const user = req.session.get("user");
+//   console.log(user);
+//   if (!user) {
+//     return {
+//       redirect: {
+//         destination: "/login",
+//         permanent: false,
+//       },
+//     };
+//   }
+
+//   return {
+//     props: { user },
+//   };
+// });

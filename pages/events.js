@@ -1,7 +1,6 @@
 import Head from "next/head";
 import Image from "next/image";
 import styles from "../styles/Home.module.css";
-import Footer from "../components/Footer";
 import Layout, { siteTitle } from "../components/Layout";
 import Link from "next/link";
 import Nav from "../components/Nav";
@@ -12,6 +11,11 @@ import { useSession } from "next-auth/client";
 export async function getServerSideProps() {
   const allEvents = await getAllEventsData();
   const eventData = JSON.stringify(allEvents);
+<<<<<<< HEAD
+  // const singleEvent = await getEventDate();
+  // const dateOfEvent = JSON.stringify(singleEvent);
+=======
+>>>>>>> 755f8d1e083cbb7bdf0f0cd26d651c08bc921a6a
 
   return {
     props: { eventData },
@@ -54,7 +58,6 @@ export default function Events({ eventData }) {
   }
 
   const eventsArray = JSON.parse(eventData);
-  console.log(eventsArray);
 
   return (
     <>
@@ -88,6 +91,7 @@ export default function Events({ eventData }) {
                           <p> {meetup.event_title}</p>
                           {/* <p>{meetup.created_at}</p> */}
                           <p>{meetup.location}</p>
+                          <p>{ourDate}</p>
                           <p>{meetup.time}</p>
                         </div>
                       </a>
