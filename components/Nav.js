@@ -16,23 +16,23 @@ export default function Nav() {
           />
         </a>
       </Link>
-      <Link href="/chat">
+      <Link href="/createEvent">
         <a>
           <Image
             src="/images/chat.svg"
             className=""
-            alt="Chat"
+            alt="Create Event"
             width={24}
             height={24}
           />
         </a>
       </Link>
-      <Link href="/profile">
+      <Link href="/myProfile">
         <a>
           <Image
             src="/images/user.svg"
             className=""
-            alt="Profile"
+            alt="My Profile"
             width={24}
             height={24}
           />
