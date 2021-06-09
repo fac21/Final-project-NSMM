@@ -16,6 +16,7 @@ import Link from "next/link";
 
 export async function getStaticPaths() {
   const events = await getAllEventsData();
+  console.log(events);
   const paths = events.map(({ id }) => {
     return {
       params: { id: id.toString() },
