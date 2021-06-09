@@ -55,6 +55,45 @@ function getUserDataById(id) {
   });
  }
 
+function createEvent(
+  user_id,
+  interests_id,
+  event_title,
+  event_description,
+  location,
+  date,
+  time
+) {
+  const INSERT_EVENT = `
+  INSERT INTO events(
+   user_id,
+   interests_id,
+   event_title,
+   event_description,
+   location,
+   date,
+   time
+ ) VALUES ($1, $2, $3,$4,$5,$6,$7)
+  RETURNING user_id,
+   interests_id,
+   event_title,
+   event_description,
+   location,
+   date,
+   time;
+  `;
+  return db
+    .query(INSERT_EVENT, [
+      user_id,
+      interests_id,
+      event_title,
+      event_description,
+      location,
+      date,
+      time,
+    ])
+    .then((result) => result.rows[0]);
+}
 
 
 module.exports = {
@@ -63,5 +102,6 @@ module.exports = {
   getEventById,
   getAllUserDataByUsername,
   getAllEventResponses,
-  getUserDataById
+  getUserDataById,
+  createEvent,
 };

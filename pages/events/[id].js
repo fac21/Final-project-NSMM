@@ -88,7 +88,7 @@ export default function Event({ eventDataStr, userDataByIdStr }) {
               <h2>{userDataParsed.name}</h2>
               {/* <Image
                 src={userDataParsed.image}
-                alt="{userDataParsed.name}"
+                alt="{userDataParsed.name + ' photo'}"
                 width={500}
                 height={500}
               /> */}
