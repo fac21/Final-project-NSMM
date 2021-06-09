@@ -18,8 +18,6 @@ function getAllEventsData() {
   });
 }
 
-
-
 function getAllUserDataByUsername(username) {
   const selectUserDetails = `
   SELECT * FROM users WHERE username=$1
@@ -47,14 +45,23 @@ function getEventById(id) {
   });
 }
 
- function getAllEventResponses(id) {
-   const selectEventResponse = `
+function getAllEventResponses(id) {
+  const selectEventResponse = `
   SELECT * FROM event_response WHERE event_id=$1
   `;
-   return db.query(selectEventResponse, [id]).then((res) => {
-     return res.rows[0];
-   });
- }
+  return db.query(selectEventResponse, [id]).then((res) => {
+    return res.rows;
+  });
+}
+
+function getUsersNameFromComment(id) {
+  const selectUserNameFromEventResponse = `
+  SELECT name FROM users WHERE id=(SELECT user_id FROM event_response WHERE event_id=$1)
+  `;
+  return db.query(selectUserNameFromEventResponse, [id]).then((res) => {
+    return res.rows;
+  });
+}
 
 function createEvent(
   user_id,
@@ -96,7 +103,6 @@ function createEvent(
     .then((result) => result.rows[0]);
 }
 
-
 module.exports = {
   getAllInterestsData,
   getAllEventsData,
@@ -105,4 +111,5 @@ module.exports = {
   getAllEventResponses,
   getUserDataById,
   createEvent,
+  getUsersNameFromComment,
 };
