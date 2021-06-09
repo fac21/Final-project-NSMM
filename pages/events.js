@@ -11,7 +11,7 @@ import { useSession } from "next-auth/client";
 export async function getServerSideProps() {
   const allEvents = await getAllEventsData();
   const eventData = JSON.stringify(allEvents);
-  
+
   return {
     props: { eventData },
   };
@@ -63,10 +63,10 @@ export default function Events({ eventData }) {
           </Head>
 
           <main className={styles.main}>
-            <h1 className={styles.title}>Chummy Event Board</h1>
+            <h1 className={styles.title}>Chumboard</h1>
             <Link href="/createEvent">
               <a>
-                <button>Create A New Event</button>
+                <button>Create Event</button>
               </a>
             </Link>
             <p>(Need to insert a filter)</p>

@@ -18,15 +18,6 @@ function getAllEventsData() {
   });
 }
 
-function getEventById(id) {
-  const selectEvent = `
-  SELECT * FROM events WHERE id=$1
-  `;
-  return db.query(selectEvent, [id]).then((res) => {
-    return res.rows[0];
-  });
-}
-
 function getAllUserDataByUsername(username) {
   const selectUserDetails = `
   SELECT * FROM users WHERE username=$1
@@ -35,7 +26,6 @@ function getAllUserDataByUsername(username) {
     return res.rows[0];
   });
 }
-
 
 function getUserDataById(id) {
   const selectUserDetailsFromUserTable = `
@@ -46,16 +36,34 @@ function getUserDataById(id) {
   });
 }
 
- function getAllEventResponses() {
+function getEventById(id) {
+  const selectEvent = `
+  SELECT * FROM events WHERE id=$1
+  `;
+  return db.query(selectEvent, [id]).then((res) => {
+    return res.rows[0];
+  });
+}
+
+function getAllEventResponses(id) {
   const selectEventResponse = `
   SELECT * FROM event_response WHERE event_id=$1
   `;
-  return db.query(selectEventResponse, [event_id]).then((res) => {
+  return db.query(selectEventResponse, [id]).then((res) => {
     return res.rows;
   });
- }
+}
 
- function getUsersProfileUsingEmail(email) {
+function getUsersNameFromComment(id) {
+  const selectUserNameFromEventResponse = `
+  SELECT name FROM users WHERE id=(SELECT user_id FROM event_response WHERE event_id=$1)
+  `;
+  return db.query(selectUserNameFromEventResponse, [id]).then((res) => {
+    return res.rows;
+  });
+}
+
+function getUsersProfileUsingEmail(email) {
   //get userID from users table using email (found in session and passed in)
   //get whole user_profile where user id returned above = the user_id in the user_profile table
   const userProfile = `
@@ -117,7 +125,6 @@ function createEvent(
     .then((result) => result.rows[0]);
 }
 
-
 module.exports = {
   getAllInterestsData,
   getAllEventsData,
@@ -126,6 +133,7 @@ module.exports = {
   getAllEventResponses,
   getUserDataById,
   createEvent,
+  getUsersNameFromComment,
   getUsersProfileUsingEmail,
   getUsersEventsUsingEmail,
 };

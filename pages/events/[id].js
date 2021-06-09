@@ -1,48 +1,72 @@
 import Head from "next/head";
 import styles from "../../styles/Home.module.css";
 import Layout, { siteTitle } from "../../components/Layout";
-import Nav from '../../components/Nav';
+import Nav from "../../components/Nav";
 import {
   getAllEventsData,
   getEventById,
+  getAllEventResponses,
   getUserDataById,
+  getUsersNameFromComment,
 } from "../../database/model";
 import { useState, useEffect } from "react";
 import { useSession } from "next-auth/client";
 import Image from "next/image";
-
+import Link from "next/link";
 
 export async function getStaticPaths() {
-    const events = await getAllEventsData();
-    const paths = events.map(({ id }) => {
-      return {
-        params: { id: id.toString()},
-      };
-    });
+  const events = await getAllEventsData();
+  const paths = events.map(({ id }) => {
     return {
-        paths,
-        fallback: false,
+      params: { id: id.toString() },
     };
+  });
+  return {
+    paths,
+    fallback: false,
+  };
 }
 
 // export async function
-
 export async function getStaticProps({ params }) {
   const eventData = await getEventById(params.id);
   const eventDataStr = JSON.stringify(eventData);
+
   const userDataById = await getUserDataById(params.id);
   const userDataByIdStr = JSON.stringify(userDataById);
-    console.log(`userDataByIdStr: ${userDataByIdStr}`);
-    return {
-      props: { eventDataStr, userDataByIdStr },
-    };
-  }
 
-export default function Event({ eventDataStr, userDataByIdStr }) {
+  const eventResponseDataByEventId = await getAllEventResponses(params.id);
+  const eventResponseDataByEventIdStr = JSON.stringify(
+    eventResponseDataByEventId
+  );
+
+  const eventResponseCommenter = await getUsersNameFromComment(params.id);
+  console.log(eventResponseCommenter);
+  const eventResponseCommenterStr = JSON.stringify(eventResponseCommenter);
+
+  return {
+    props: {
+      eventDataStr,
+      userDataByIdStr,
+      eventResponseDataByEventIdStr,
+      eventResponseCommenterStr,
+    },
+  };
+}
+
+export default function Event({
+  eventDataStr,
+  userDataByIdStr,
+  eventResponseDataByEventIdStr,
+  eventResponseCommenterStr,
+}) {
   const eventDataParsed = JSON.parse(eventDataStr);
-
   const userDataParsed = JSON.parse(userDataByIdStr);
-  console.log(eventDataParsed);
+  const eventResponseDataParsed = JSON.parse(eventResponseDataByEventIdStr);
+  const eventResponseCommenter = JSON.parse(eventResponseCommenterStr);
+
+  console.log(`eventResponseCommenter: ${eventResponseCommenter}`);
+
   const gbDate = new Date(eventDataParsed.date);
   const ourDate = new Intl.DateTimeFormat("en-GB", {
     dateStyle: "full",
@@ -85,15 +109,19 @@ export default function Event({ eventDataStr, userDataByIdStr }) {
           <main className={styles.main}>
             <div key={eventDataParsed.id}>
               <h1>{eventDataParsed.event_title}</h1>
-              <h2>{userDataParsed.name}</h2>
+              <p>
+                <strong>Event Host:</strong> {userDataParsed.name}
+              </p>
               {/* <Image
                 src={userDataParsed.image}
                 alt="{userDataParsed.name + ' photo'}"
                 width={500}
                 height={500}
               /> */}
-
-              <p>{eventDataParsed.event_description}</p>
+              <p>
+                <strong>Event Description: </strong>
+                {eventDataParsed.event_description}
+              </p>
               <p>
                 <strong>Date of event:</strong> {ourDate}
               </p>
@@ -103,8 +131,10 @@ export default function Event({ eventDataStr, userDataByIdStr }) {
               <p>
                 <strong>Location:</strong> {eventDataParsed.location}
               </p>
+              <p>
+                <strong>Comments</strong>
+              </p>
             </div>
-            <div></div>
             <form action="/events">
               <label htmlFor="response"></label>
               <textarea
@@ -112,10 +142,41 @@ export default function Event({ eventDataStr, userDataByIdStr }) {
                 name="response"
                 rows="6"
                 cols="50"
-                placeholder="Type your response here"
+                placeholder="Add a public comment"
               ></textarea>
               <button type="submit">Submit</button>
             </form>
+
+            <div className="styles.events">
+              {eventResponseDataParsed.map((comment) => {
+                // const gbDate = new Date(meetup.date);
+                // const ourDate = new Intl.DateTimeFormat("en-GB", {
+                //   dateStyle: "full",
+                // }).format(gbDate);
+                console.log(comment);
+                return (
+                  <>
+                    <Link
+                      href="/profiles/[id]"
+                      as={`/profiles/${comment.user_id}`}
+                    >
+                      <a>
+                        <div key={comment.id}>
+                          <p>
+                            <strong>Name: </strong>
+                            {comment.user_id}
+                          </p>
+                          <p>
+                            <strong>Comment: </strong>
+                            {comment.response_content}
+                          </p>
+                        </div>
+                      </a>
+                    </Link>
+                  </>
+                );
+              })}
+            </div>
           </main>
         </div>
       </Layout>
