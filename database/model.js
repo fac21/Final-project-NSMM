@@ -119,7 +119,9 @@ function createEvent(
       date,
       time,
     ])
-    .then((result) => result.rows[0]);
+    .then((result) => console.log(result)).catch((error) => { console.log(`error: ${error}`) })
+  // .then((res) => {
+  //   return res.rows;
 }
 
 module.exports = {

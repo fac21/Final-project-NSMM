@@ -84,7 +84,7 @@ CREATE TABLE events (
     event_description TEXT NOT NULL,
     -- created_at TIMESTAMPTZ NOT NULL DEFAULT CURRENT_TIMESTAMP,
     location TEXT NOT NULL,
-    date DATE NOT NULL,
+    date TEXT NOT NULL,
     time TEXT NOT NULL
 );
 
@@ -100,7 +100,7 @@ INSERT INTO accounts (compound_id, user_id, provider_type, provider_id, provider
 ('decef9f7a683e28eb9b5538f97f6cf92923c843dd3238fd3ae1dda0f1c5cb422', 2, 'oauth', 'auth0', 'auth0|60bdf6c17634b50069321add', '64lXnBeY53_eaM8YPtph7pUv3PZb8BZq', '2021-06-07 11:59:59.129057+01', '2021-06-07 11:59:59.129057+01');
 
 INSERT INTO users(name, email, image, created_at, updated_at) VALUES
-('fac21testing', 'fac21testing@gmail.com', 'https://s.gravatar.com/avatar/8c6896d94c218a82e69b3d9cb4fd7713?s=480&r=pg&d=https%3A%2F%2Fcdn.auth0.com%2Favatars%2Ffa.png', '2021-06-07 11:58:23.807084+01', '2021-06-07 11:58:23.807084+01'), 
+('fac21testing', 'fac21testing@gmail.com', 'https://s.gravatar.com/avatar/8c6896d94c218a82e69b3d9cb4fd7713?s=480&r=pg&d=https%3A%2F%2Fcdn.auth0.com%2Favatars%2Ffa.png', '2021-06-07 11:58:23.807084+01', '2021-06-07 11:58:23.807084+01'),
 ('fac21testing2', 'fac21testing2@gmail.com', 'https://s.gravatar.com/avatar/c1d1d7338d4df3abb4539002ef96519d?s=480&r=pg&d=https%3A%2F%2Fcdn.auth0.com%2Favatars%2Ffa.png', '2021-06-07 11:59:59.074831+01', '2021-06-07 11:59:59.074831+01');
 
 INSERT INTO interests(interest_name, interest_icon) VALUES
