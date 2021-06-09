@@ -1,9 +1,10 @@
 // import Image from "next/image";
 import Link from "next/link";
 import { useState, useEffect } from "react";
-import { useSession } from "next-auth/client";
+import { useSession, signOut } from "next-auth/client";
 import Nav from "../components/Nav";
 import Layout, { siteTitle } from "../components/Layout";
+
 
 export default function Settings() {
   const [session, loading] = useSession();
@@ -45,6 +46,7 @@ export default function Settings() {
         <div>
           <h1>Settings Page</h1>
           <p>(Need to Insert ability to change password and log out button)</p>
+          <button onClick={signOut}>Log Out</button>
         </div>
       </main>
       <Nav />
