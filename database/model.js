@@ -86,7 +86,6 @@ function getUsersEventsUsingEmail(email) {
 }
 
 function createEvent(
-  user_id,
   interests_id,
   event_title,
   event_description,
@@ -96,14 +95,13 @@ function createEvent(
 ) {
   const INSERT_EVENT = `
   INSERT INTO events(
-   user_id,
    interests_id,
    event_title,
    event_description,
    location,
    date,
    time
- ) VALUES ($1, $2, $3,$4,$5,$6,$7)
+ ) VALUES ($1, $2, $3,$4,$5,$6)
   RETURNING user_id,
    interests_id,
    event_title,
@@ -114,7 +112,6 @@ function createEvent(
   `;
   return db
     .query(INSERT_EVENT, [
-      user_id,
       interests_id,
       event_title,
       event_description,
