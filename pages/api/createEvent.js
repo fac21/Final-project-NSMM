@@ -1,13 +1,13 @@
 
 import { createEvent } from "../../database/model";
 
-export default (req, res) => {
+export default async (req, res) => {
 
 
-    const user_id = req.params
-    const interests_id = req.body.interests_id;
-      console.log(interests_id);
-    console.log(user_id);
+    //const user_id = req.params
+    // const { interests_id, event_title, event_description, location, date, time }= req.body;
+    // console.log(interests_id);
+    // console.log(user_id);
     console.log(req.body)
 //    event_title,
 //    event_description,

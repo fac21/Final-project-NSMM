@@ -65,7 +65,8 @@ export default function CreateEvent() {
           <h1>Hey {session.user.name}!</h1>
           <h2>Fill out the following form to create an event.</h2>
         </div>
-        <form onSubmit={addEventToDb}>
+        <form method="POST" action="/api/createEvent">
+          {/* onSubmit={addEventToDb} */}
           <div>
             <label for="interest_id">Interest Type</label>
             <select id="interest_id" name="interest_id">
