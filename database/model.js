@@ -18,6 +18,15 @@ function getAllEventsData() {
   });
 }
 
+function getAllUserData() {
+  const selectUsers = `
+  SELECT * FROM users
+  `;
+  return db.query(selectUsers).then((res) => {
+    return res.rows;
+  });
+}
+
 function getAllUserDataByUsername(username) {
   const selectUserDetails = `
   SELECT * FROM users WHERE username=$1
@@ -32,6 +41,15 @@ function getUserDataById(id) {
   SELECT * FROM users WHERE id=$1
   `;
   return db.query(selectUserDetailsFromUserTable, [id]).then((res) => {
+    return res.rows[0];
+  });
+}
+
+function getUserProfileById(id) {
+  const selectUserDetailsFromProfileTable = `
+  SELECT * FROM user_profiles WHERE id=$1
+  `;
+  return db.query(selectUserDetailsFromProfileTable, [id]).then((res) => {
     return res.rows[0];
   });
 }
@@ -136,4 +154,6 @@ module.exports = {
   getUsersNameFromComment,
   getUsersProfileUsingEmail,
   getUsersEventsUsingEmail,
+  getAllUserData,
+  getUserProfileById,
 };
