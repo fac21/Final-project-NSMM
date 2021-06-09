@@ -3,8 +3,33 @@ import { useSession } from "next-auth/client";
 import Nav from "../components/Nav";
 import Layout, { siteTitle } from "../components/Layout";
 import Link from "next/link";
+// import stylesheet from "../styles/styles";
 
 export default function CreateEvent() {
+
+  const addEventToDb = (event) => {
+    event.preventDefault(); // don't redirect the page
+    // where we'll add our form logic
+    console.log(`event: ${event.target.event_title.value}`);
+    return fetch("/api/createEvent", {
+      body: JSON.stringify({
+        interest_id: event.target.interest_id.value,
+        event_title: event.target.event_title.value,
+        location: event.target.location.value,
+        date: event.target.date.value,
+        time: event.target.time.value,
+        event_description: event.target.event_description.value,
+        //name: 'test',
+      }),
+      headers: {
+        "Content-Type": "application/json",
+      },
+      method: "POST",
+    });
+
+    //const result = res.json();
+  };
+
   const [session, loading] = useSession();
   const [content, setContent] = useState();
 
@@ -42,30 +67,61 @@ export default function CreateEvent() {
   return (
     <Layout>
       <div>
-        <h1>Create Event</h1>
-        <form action="/events">
-          <label for="interestType">Interest Type</label>
-          <select id="interestType" name="interestType">
-            <option value="Coffee">Coffee</option>
-            <option value="Drink">Drink</option>
-            <option value="Walk">Walk</option>
-            <option value="Coding">Coding</option>
+        <div>
+          <h1>Hey {session.user.name}!</h1>
+          <h2>Fill out the following form to create an event.</h2>
+        </div>
+
+        <form onSubmit={addEventToDb}>
+          {/* onSubmit={addEventToDb} action="/api/createEvent" method="POST"*/}
+          <div>
+          <label htmlFor="interest_id">Interest Type</label>
+          <select id="interest_id" name="interest_id" required>
+            <option value="2">Coffee</option>
+            <option value="1">Drink</option>
+            <option value="3">Walk</option>
+            <option value="4">Coding</option>
           </select>
-          <label for="eventName">Event Name</label>
-          <input type="text" id="eventName" name="eventName" required></input>
-          <label for="location">Location</label>
-          <input type="text" id="location" name="location" required></input>
-          <label for="date">Date</label>
-          <input type="date" id="date" name="date" required></input>
-          <label for="time">Time</label>
-          <select name="time" id="time" required>
-            <option value="morning">Morning</option>
-            <option value="afternoon">Afternoon</option>
-            <option value="non-binary">Evening</option>
-          </select>
-          <label for="details">Specify details</label>
-          <textarea type="text" id="details" name="details" required></textarea>
-          <input type="submit" value="Submit"></input>
+          </div>
+          <div>
+            <label htmlFor="event_title">Event Title</label>
+            <input
+              type="text"
+              id="event_title"
+              name="event_title"
+              required
+            ></input>
+          </div>
+          <div>
+            <label htmlFor="location">Location</label>
+            <input type="text" id="location" name="location" required></input>
+          </div>
+          <div>
+            <label htmlFor="date">Date</label>
+            <input type="date" id="date" name="date" required></input>
+          </div>
+          <div>
+            <label htmlFor="time">Time</label>
+          </div>
+          <div>
+            <select name="time" id="time" required>
+              <option value="morning">Morning</option>
+              <option value="afternoon">Afternoon</option>
+              <option value="evening">Evening</option>
+            </select>
+            <div>
+              <label htmlFor="event_description">Specify details</label>
+              <textarea
+                type="text"
+                id="event_description"
+                name="event_description"
+                required
+              ></textarea>
+            </div>
+          </div>
+          <div>
+            <button type="submit">Submit</button>
+          </div>
         </form>
       </div>
       <Nav />
