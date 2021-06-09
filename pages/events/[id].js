@@ -5,6 +5,7 @@ import Nav from '../../components/Nav';
 import {
   getAllEventsData,
   getEventById,
+  getAllEventResponses,
   getUserDataById,
 } from "../../database/model";
 import { useState, useEffect } from "react";
@@ -28,21 +29,41 @@ export async function getStaticPaths() {
 // export async function
 
 export async function getStaticProps({ params }) {
+
   const eventData = await getEventById(params.id);
+  console.log(`2A eventData: ${eventData}`);
   const eventDataStr = JSON.stringify(eventData);
+  console.log(`2B eventDataStr: ${eventDataStr}`);
+
   const userDataById = await getUserDataById(params.id);
   const userDataByIdStr = JSON.stringify(userDataById);
-    console.log(`userDataByIdStr: ${userDataByIdStr}`);
+
+  const eventResponseDataByEventId = await getAllEventResponses(params.id);
+console.log(`1A eventResponseDataByEventId: ${eventResponseDataByEventId}`);
+
+  const eventResponseDataByEventIdStr = JSON.stringify(eventResponseDataByEventId);
+
+    console.log(
+      `1B eventResponseDataByEventIdStr: ${eventResponseDataByEventIdStr}`);
+
+
     return {
-      props: { eventDataStr, userDataByIdStr },
+      props: { eventDataStr, userDataByIdStr, eventResponseDataByEventIdStr },
     };
   }
 
-export default function Event({ eventDataStr, userDataByIdStr }) {
+export default function Event({
+  eventDataStr,
+  userDataByIdStr,
+  eventResponseDataByEventIdStr,
+}) {
   const eventDataParsed = JSON.parse(eventDataStr);
-
   const userDataParsed = JSON.parse(userDataByIdStr);
-  console.log(eventDataParsed);
+  const eventResponseDataParsed = JSON.parse(eventResponseDataByEventIdStr);
+
+  console.log(`eventDataParsed: ${eventDataParsed}`);
+  console.log(`eventResponseDataParsed: ${eventResponseDataParsed}`);
+
   const gbDate = new Date(eventDataParsed.date);
   const ourDate = new Intl.DateTimeFormat("en-GB", {
     dateStyle: "full",
@@ -85,7 +106,9 @@ export default function Event({ eventDataStr, userDataByIdStr }) {
           <main className={styles.main}>
             <div key={eventDataParsed.id}>
               <h1>{eventDataParsed.event_title}</h1>
-              <h2>{userDataParsed.name}</h2>
+              <p>
+                <strong>Event Host:</strong> {userDataParsed.name}
+              </p>
               {/* <Image
                 src={userDataParsed.image}
                 alt="{userDataParsed.name + ' photo'}"
@@ -93,7 +116,10 @@ export default function Event({ eventDataStr, userDataByIdStr }) {
                 height={500}
               /> */}
 
-              <p>{eventDataParsed.event_description}</p>
+              <p>
+                <strong>Event Description: </strong>
+                {eventDataParsed.event_description}
+              </p>
               <p>
                 <strong>Date of event:</strong> {ourDate}
               </p>
@@ -103,8 +129,10 @@ export default function Event({ eventDataStr, userDataByIdStr }) {
               <p>
                 <strong>Location:</strong> {eventDataParsed.location}
               </p>
+              <p>
+                <strong>Comments</strong>
+              </p>
             </div>
-            <div></div>
             <form action="/events">
               <label htmlFor="response"></label>
               <textarea
@@ -112,10 +140,21 @@ export default function Event({ eventDataStr, userDataByIdStr }) {
                 name="response"
                 rows="6"
                 cols="50"
-                placeholder="Type your response here"
+                placeholder="Add a public comment"
               ></textarea>
               <button type="submit">Submit</button>
             </form>
+
+            <div>
+              <p>
+                <strong>Name: </strong>
+                {eventResponseDataParsed.user_id}
+              </p>
+              <p>
+                <strong>Comment: </strong>
+                {eventResponseDataParsed.response_content}
+              </p>
+            </div>
           </main>
         </div>
       </Layout>

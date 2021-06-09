@@ -18,14 +18,7 @@ function getAllEventsData() {
   });
 }
 
-function getEventById(id) {
-  const selectEvent = `
-  SELECT * FROM events WHERE id=$1
-  `;
-  return db.query(selectEvent, [id]).then((res) => {
-    return res.rows[0];
-  });
-}
+
 
 function getAllUserDataByUsername(username) {
   const selectUserDetails = `
@@ -36,7 +29,6 @@ function getAllUserDataByUsername(username) {
   });
 }
 
-
 function getUserDataById(id) {
   const selectUserDetailsFromUserTable = `
   SELECT * FROM users WHERE id=$1
@@ -46,13 +38,22 @@ function getUserDataById(id) {
   });
 }
 
- function getAllEventResponses() {
-  const selectEventResponse = `
+function getEventById(id) {
+  const selectEvent = `
+  SELECT * FROM events WHERE id=$1
+  `;
+  return db.query(selectEvent, [id]).then((res) => {
+    return res.rows[0];
+  });
+}
+
+ function getAllEventResponses(id) {
+   const selectEventResponse = `
   SELECT * FROM event_response WHERE event_id=$1
   `;
-  return db.query(selectEventResponse, [event_id]).then((res) => {
-    return res.rows;
-  });
+   return db.query(selectEventResponse, [id]).then((res) => {
+     return res.rows[0];
+   });
  }
 
 function createEvent(

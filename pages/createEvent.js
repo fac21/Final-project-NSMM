@@ -7,22 +7,22 @@ import Link from "next/link";
 
 
 export default function CreateEvent() {
-  const addEventToDb = (event) => {
-    event.preventDefault(); // don't redirect the page
-    // where we'll add our form logic
-    return fetch("/api/createEvent", {
-      body: JSON.stringify({
-        name: event.target.name.value,
-        //name: 'test',
-      }),
-      headers: {
-        "Content-Type": "application/json",
-      },
-      method: "POST",
-    });
+  // const addEventToDb = (event) => {
+  //   event.preventDefault(); // don't redirect the page
+  //   // where we'll add our form logic
+  //   return fetch("/api/createEvent", {
+  //     body: JSON.stringify({
+  //       name: event.target.name.value,
+  //       //name: 'test',
+  //     }),
+  //     headers: {
+  //       "Content-Type": "application/json",
+  //     },
+  //     method: "POST",
+  //   });
 
-    //const result = res.json();
-  };
+  //   //const result = res.json();
+  // };
 
   const [session, loading] = useSession();
   const [content, setContent] = useState();
@@ -70,10 +70,18 @@ export default function CreateEvent() {
           <div>
             <label for="interest_id">Interest Type</label>
             <select id="interest_id" name="interest_id">
-              <option value="Coffee">Coffee</option>
-              <option value="Drink">Drink</option>
-              <option value="Walk">Walk</option>
-              <option value="Coding">Coding</option>
+              <option id="2" value="2">
+                Coffee
+              </option>
+              <option id="1" value="1">
+                Drink
+              </option>
+              <option id="3" value="3">
+                Walk
+              </option>
+              <option id="4" value="4">
+                Coding
+              </option>
             </select>
           </div>
           <div>
