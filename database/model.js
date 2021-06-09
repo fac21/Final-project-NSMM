@@ -55,6 +55,28 @@ function getUserDataById(id) {
   });
  }
 
+ function getUsersProfileUsingEmail(email) {
+  //get userID from users table using email (found in session and passed in)
+  //get whole user_profile where user id returned above = the user_id in the user_profile table
+  const userProfile = `
+  SELECT * FROM user_profiles WHERE user_id = (SELECT id FROM users WHERE email = $1)
+  `;
+  return db.query(userProfile, [email]).then((res) => {
+    return res.rows[0];
+  });
+}
+
+function getUsersEventsUsingEmail(email) {
+  //get userID from users table using email (found in session and passed in)
+  //get userEvents where user id returned above = the user_id in the user_profile table
+  const userProfile = `
+  SELECT * FROM events WHERE user_id = (SELECT id FROM users WHERE email = $1)
+  `;
+  return db.query(userProfile, [email]).then((res) => {
+    return res.rows;
+  });
+}
+
 function createEvent(
   user_id,
   interests_id,
@@ -104,4 +126,6 @@ module.exports = {
   getAllEventResponses,
   getUserDataById,
   createEvent,
+  getUsersProfileUsingEmail,
+  getUsersEventsUsingEmail,
 };
