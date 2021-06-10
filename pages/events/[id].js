@@ -34,7 +34,10 @@ export async function getStaticProps({ params }) {
   const eventData = await getEventById(params.id);
   const eventDataStr = JSON.stringify(eventData);
 
-  const userDataById = await getUserDataById(params.id);
+  console.log(`eventData.user_id:${eventData.user_id}`)
+
+  const userDataById = await getUserDataById(eventData.user_id);
+  // console.log(`userDataById: ${userDataById}`);
   const userDataByIdStr = JSON.stringify(userDataById);
 
   const eventResponseDataByEventId = await getAllEventResponses(params.id);
@@ -68,9 +71,6 @@ export default function Event({
   // user name who commented
   const eventResponseCommenter = JSON.parse(eventResponseCommenterStr);
   console.log(eventResponseCommenter);
-
-  // const eventResponseArray = { eventResponseCommenter , eventResponseDataParsed};
-  // console.log(`eventResponseArray: ${eventResponseArray}`);
 
   const gbDate = new Date(eventDataParsed.date);
   const ourDate = new Intl.DateTimeFormat("en-GB", {
