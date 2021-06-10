@@ -106,37 +106,37 @@ function getUsersEventsUsingEmail(email) {
 function createEvent(
   interests_id,
   event_title,
-  event_description,
   location,
   date,
-  time
+  time,
+  event_description
 ) {
   const INSERT_EVENT = `
   INSERT INTO events(
    interests_id,
    event_title,
-   event_description,
    location,
    date,
-   time
+   time,
+   event_description
  ) VALUES ($1, $2, $3,$4,$5,$6)
   RETURNING
   user_id
    interests_id,
    event_title,
-   event_description,
    location,
    date,
-   time;
+   time,
+  event_description
   `;
   return db
     .query(INSERT_EVENT, [
       interests_id,
       event_title,
-      event_description,
       location,
       date,
       time,
+      event_description
     ])
     //.then((result) => console.log(result)).catch((error) => { console.log(`error: ${error}`) })
     .then((res) => {
