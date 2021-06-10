@@ -83,7 +83,6 @@ export default function CreateEvent() {
         </div>
 
         <form onSubmit={addEventToDb}>
-          {/* onSubmit={addEventToDb} action="/api/createEvent" method="POST"*/}
           <div>
           <label htmlFor="interest_id">Interest Type</label>
           <select id="interest_id" name="interest_id" required>
@@ -136,16 +135,3 @@ export default function CreateEvent() {
     </Layout>
   );
 }
-
-// function post(request, response) {
-//   const data = request.body;
-//   const values = Object.values(data);
-//   db.query(
-//     "INSERT INTO users(username, age, location) VALUES($1, $2, $3)",
-//     values
-//   ).then(() => {
-//     response.redirect("/");
-//   });
-// }
-
-// module.exports = { get, post };
