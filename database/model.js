@@ -103,6 +103,16 @@ function getUsersEventsUsingEmail(email) {
   });
 }
 
+function getUsersEventsbyUserId(id) {
+  //get userEvents where user id given = the user_id in the user_profile table
+  const userEvents = `
+  SELECT * FROM events WHERE user_id = $1)
+  `;
+  return db.query(userEvents, [id]).then((res) => {
+    return res.rows;
+  });
+}
+
 function createEvent(
   interests_id,
   event_title,
@@ -137,7 +147,10 @@ function createEvent(
       date,
       time,
     ])
-    .then((result) => console.log(result)).catch((error) => { console.log(`error: ${error}`) })
+    .then((result) => console.log(result))
+    .catch((error) => {
+      console.log(`error: ${error}`);
+    });
   // .then((res) => {
   //   return res.rows;
 }
@@ -155,4 +168,5 @@ module.exports = {
   getUsersEventsUsingEmail,
   getAllUserData,
   getUserProfileById,
+  getUsersEventsbyUserId,
 };

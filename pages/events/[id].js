@@ -66,6 +66,7 @@ export default function Event({
 
   // user name who commented
   const eventResponseCommenter = JSON.parse(eventResponseCommenterStr);
+  console.log(eventResponseCommenter);
 
   // const eventResponseArray = { eventResponseCommenter , eventResponseDataParsed};
   // console.log(`eventResponseArray: ${eventResponseArray}`);
@@ -167,7 +168,7 @@ export default function Event({
                         <div key={comment.id}>
                           <p>
                             <strong>Name: </strong>
-                            {comment.user_id}
+                            {eventResponseCommenter[0].name}
                           </p>
                           <p>
                             <strong>Comment: </strong>

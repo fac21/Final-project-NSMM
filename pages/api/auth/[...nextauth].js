@@ -9,6 +9,13 @@ const options = {
       domain: process.env.AUTH0_DOMAIN,
     }),
   ],
+  pages: {
+    // signIn: "/auth/signin",
+    // signOut: "/auth/signout",
+    // error: "/auth/error", // Error code passed in query string as ?error=
+    // verifyRequest: "/auth/verify-request", // (used for check email message)
+    newUser: "/createProfile", // If set, new users will be directed here on first sign in
+  },
 
   database: process.env.DATABASE_URL,
 };
