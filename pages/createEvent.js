@@ -6,11 +6,16 @@ import Layout, { siteTitle } from "../components/Layout";
 import Link from "next/link";
 import styles from "../components/Layout.module.css";
 
+import { useRouter } from "next/router";
+
+// import stylesheet from "../styles/styles";
+
 export default function CreateEvent() {
+  const router = useRouter();
+
   const addEventToDb = (event) => {
     event.preventDefault(); // don't redirect the page
     // where we'll add our form logic
-    console.log(`event: ${event.target.event_title.value}`);
     return fetch("/api/createEvent", {
       body: JSON.stringify({
         interest_id: event.target.interest_id.value,
@@ -63,6 +68,10 @@ export default function CreateEvent() {
       </Layout>
     );
   }
+
+  const handleClick = (e) => {
+    router.push("/events");
+  };
 
   return (
     <Layout>
@@ -121,7 +130,9 @@ export default function CreateEvent() {
             </div>
           </div>
           <div>
-            <button type="submit">Submit</button>
+            <button onClick={handleClick} type="submit">
+              Submit
+            </button>
           </div>
         </form>
       </div>
