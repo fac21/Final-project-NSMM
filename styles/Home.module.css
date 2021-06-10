@@ -23,7 +23,8 @@
   display: flex;
   justify-content: space-around;
   align-items: center;
-  background-color: #fb9300;
+  /* background-color: #fb9300; */
+  background-color: #fbba5c;
   position: sticky;
   margin-top: auto;
   position: absolute;

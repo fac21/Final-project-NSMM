@@ -84,7 +84,7 @@ CREATE TABLE events (
     event_description TEXT NOT NULL,
     -- created_at TIMESTAMPTZ NOT NULL DEFAULT CURRENT_TIMESTAMP,
     location TEXT NOT NULL,
-    date TEXT NOT NULL,
+    date date NOT NULL,
     time TEXT NOT NULL
 );
 

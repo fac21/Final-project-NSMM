@@ -83,11 +83,19 @@ export default function Events({ eventData }) {
                       <a>
                         <div key={meetup.id}>
                           <p>{meetup.user_id}</p>
-                          <p> {meetup.event_title}</p>
+                          <p>
+                            {" "}
+                            <strong>Event: </strong> {meetup.event_title}
+                          </p>
                           {/* <p>{meetup.created_at}</p> */}
-                          <p>{meetup.location}</p>
-                          <p>{ourDate}</p>
-                          <p>{meetup.time}</p>
+                          <p>
+                            {" "}
+                            <strong>Location</strong>: {meetup.location}
+                          </p>
+                          <p>
+                            <strong>Date:</strong> {ourDate}
+                          </p>
+                          <p><strong>Time: </strong>{meetup.time}</p>
                         </div>
                       </a>
                     </Link>

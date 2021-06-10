@@ -3,7 +3,7 @@ import Image from "next/image";
 import styles from "../styles/Home.module.css";
 import Layout, { siteTitle } from "../components/Layout";
 import Link from "next/link";
-//import Nav from '../components/Nav';
+import Nav from '../components/Nav';
 import React from "react";
 import { signIn, signOut, useSession } from "next-auth/client";
 
@@ -26,8 +26,10 @@ export default function LogIn() {
           )}
           {session && (
             <>
-              Signed in as {session.user.email} <br />
-              <button onClick={signOut}>sign out</button>
+              {/* Signed in as {session.user.email} <br />
+              <button onClick={signOut}>sign out</button> */}
+            <Nav/>
+
             </>
           )}
         </main>
