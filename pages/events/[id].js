@@ -13,6 +13,7 @@ import { useState, useEffect } from "react";
 import { useSession } from "next-auth/client";
 import Image from "next/image";
 import Link from "next/link";
+import { useRouter } from "next/router";
 
 export async function getStaticPaths() {
   const events = await getAllEventsData();
@@ -63,6 +64,29 @@ export default function Event({
   eventResponseDataByEventIdStr,
   eventResponseCommenterStr,
 }) {
+
+ const router = useRouter();
+
+  const addEventResponseToDb = (event) =>{
+  event.preventDefault(); // don't redirect the page
+    // where we'll add our form logic
+    return fetch("/api/createProfile", {
+      body: JSON.stringify({
+        //  test:  'hi'
+        response_content: event.target.response_content.value,
+      }),
+      headers: {
+        "Content-Type": "application/json",
+      },
+      method: "POST",
+    });
+
+    //const result = res.json();
+  };
+
+
+
+
   const eventDataParsed = JSON.parse(eventDataStr);
   const userDataParsed = JSON.parse(userDataByIdStr);
   const eventResponseDataParsed = JSON.parse(eventResponseDataByEventIdStr);
@@ -151,11 +175,11 @@ export default function Event({
                 <strong>Comments</strong>
               </p>
             </div>
-            <form action="/events">
-              <label htmlFor="response"></label>
+            <form onSubmit={addEventResponseToDb}>
+              <label htmlFor="response_content "></label>
               <textarea
-                id="response"
-                name="response"
+                id="response_content "
+                name="response_content "
                 rows="6"
                 cols="50"
                 placeholder="Add a public comment"

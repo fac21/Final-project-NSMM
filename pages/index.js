@@ -7,6 +7,7 @@ import Nav from "../components/Nav";
 import React from "react";
 import { signIn, signOut, useSession } from "next-auth/client";
 import BlankNav from "../components/BlankNav";
+import stylesLayout from "../components/Layout.module.css";
 
 export default function LogIn() {
   const [session, loading] = useSession();
@@ -39,6 +40,9 @@ export default function LogIn() {
                 width={450}
                 height={450}
               ></Image>
+              <h2 className={stylesLayout.main}>
+                Friendships not relationships
+              </h2>
               {/* Signed in as {session.user.email} <br />
               <button onClick={signOut}>sign out</button> */}
               <Nav />
@@ -46,7 +50,6 @@ export default function LogIn() {
           )}
         </main>
       </div>
-      
     </Layout>
   );
 }
