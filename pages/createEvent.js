@@ -4,10 +4,9 @@ import { useSession } from "next-auth/client";
 import Nav from "../components/Nav";
 import Layout, { siteTitle } from "../components/Layout";
 import Link from "next/link";
-// import stylesheet from "../styles/styles";
+import styles from "../components/Layout.module.css";
 
 export default function CreateEvent() {
-
   const addEventToDb = (event) => {
     event.preventDefault(); // don't redirect the page
     // where we'll add our form logic
@@ -68,9 +67,9 @@ export default function CreateEvent() {
   return (
     <Layout>
       <div>
-      <Head>
-            <title>{siteTitle} | Create Event</title>
-          </Head>
+        <Head>
+          <title>{siteTitle} | Create Event</title>
+        </Head>
         <div>
           <h1>Hey {session.user.name}!</h1>
           <h2>Fill out the following form to create an event.</h2>
@@ -79,13 +78,13 @@ export default function CreateEvent() {
         <form onSubmit={addEventToDb}>
           {/* onSubmit={addEventToDb} action="/api/createEvent" method="POST"*/}
           <div>
-          <label htmlFor="interest_id">Interest Type</label>
-          <select id="interest_id" name="interest_id" required>
-            <option value="2">Coffee</option>
-            <option value="1">Drink</option>
-            <option value="3">Walk</option>
-            <option value="4">Coding</option>
-          </select>
+            <label htmlFor="interest_id">Interest Type</label>
+            <select id="interest_id" name="interest_id" required>
+              <option value="2">Coffee</option>
+              <option value="1">Drink</option>
+              <option value="3">Walk</option>
+              <option value="4">Coding</option>
+            </select>
           </div>
           <div>
             <label htmlFor="event_title">Event Title</label>

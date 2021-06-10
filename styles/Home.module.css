@@ -1,3 +1,5 @@
+@import url("https://fonts.googleapis.com/css2?family=Dancing+Script:wght@694&display=swap");
+
 .container {
   min-height: 100vh;
   padding: 0 0.5rem;
@@ -40,14 +42,15 @@
   justify-content: space-around;
   align-items: center;
   position: fixed;
-  /* position: sticky; */
-  /* background-color: #fb9300; */
   background-color: #fbba5c;
   margin-top: auto;
-  /* position: absolute; */
   left: 0;
   bottom: 0;
   overflow: hidden;
+  color: whitesmoke;
+  font-size: 0.5rem;
+  font-family: BlinkMacSystemFont, Roboto, Ubuntu, Oxygen, -apple-system,
+    "Segoe UI", Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
 }
 
 .events {
@@ -55,11 +58,6 @@
   justify-content: center;
   flex-direction: column;
   margin-bottom: 35px;
-}
-
-.header {
-  font-family: BlinkMacSystemFont;
-  color: #fb9300;
 }
 
 .title a {
@@ -76,7 +74,7 @@
 .title {
   margin: 0;
   line-height: 1.15;
-  font-size: 3rem;
+  font-size: 1.5rem;
 }
 
 .title,
