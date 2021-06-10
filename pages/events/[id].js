@@ -167,7 +167,7 @@ export default function Event({
                         <div key={comment.id}>
                           <p>
                             <strong>Name: </strong>
-                            {comment.user_id}
+                            {eventResponseCommenter[0].name}
                           </p>
                           <p>
                             <strong>Comment: </strong>
