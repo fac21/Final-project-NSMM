@@ -268,6 +268,15 @@ function createProfile(
   ))
 }
 
+function getEventIdFromEventTable(user_id) {
+  const eventId = `
+  SELECT event_id FROM events WHERE user_id = $1)
+  `;
+  return db.query(eventId, [user_id]).then((res) => {
+    return res.rows;
+  });
+}
+
 module.exports = {
   getAllInterestsData,
   getAllEventsData,
@@ -283,7 +292,8 @@ module.exports = {
   getUserProfileById,
   getUsersEventsbyUserId,
   getUsersIdUsingEmail,
-  createResponse
+  createResponse,
   createProfile,
   getUsersIdFromUsersTableUsingEmail,
+  getEventIdFromEventTable
 };
