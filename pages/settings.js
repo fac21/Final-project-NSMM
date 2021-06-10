@@ -1,12 +1,11 @@
-// import Image from "next/image";
+import Image from "next/image";
 import Head from "next/head";
 import Link from "next/link";
 import { useState, useEffect } from "react";
 import { useSession, signOut } from "next-auth/client";
 import Nav from "../components/Nav";
-import Header from '../components/Header';
 import Layout, { siteTitle } from "../components/Layout";
-import styles from '../styles/Home.module.css';
+import styles from "../styles/Home.module.css";
 
 export default function Settings() {
   const [session, loading] = useSession();
@@ -30,37 +29,41 @@ export default function Settings() {
     return (
       <Layout>
         <div className={styles.not_signed_in}>
-        <Head>
+          <Head>
             <title>{siteTitle} | Not Signed In</title>
           </Head>
-          <Header/>
-        <main>
-          <div>
-            <h1>You aren't signed in, please sign in first</h1>
-            <button>
-              <Link href="/">
-                <a>Click here for the log in page</a>
-              </Link>
-            </button>
-          </div>
-        </main>
+          <main>
+            <div>
+              <h1>You aren't signed in, please sign in first</h1>
+              <button>
+                <Link href="/">
+                  <a>Click here for the log in page</a>
+                </Link>
+              </button>
+            </div>
+          </main>
         </div>
       </Layout>
     );
   }
   return (
     <Layout>
+      <Image
+        src="/images/friends/True Friends-bro.svg"
+        alt="picture of friends"
+        height={450}
+        width={450}
+      ></Image>
       <div>
-      <Head>
-            <title>{siteTitle} | Settings</title>
-          </Head>
-      <main>
-        <div>
-          <h1>Settings Page</h1>
-          <p>(Need to Insert ability to change password and log out button)</p>
-          <button onClick={signOut}>Log Out</button>
-        </div>
-      </main>
+        <Head>
+          <title>{siteTitle} | Settings</title>
+        </Head>
+        <main>
+          <div>
+        
+            <button onClick={signOut}>Log Out</button>
+          </div>
+        </main>
       </div>
       <Nav />
     </Layout>

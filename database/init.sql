@@ -65,9 +65,9 @@ CREATE TABLE user_profiles (
     id SERIAL PRIMARY KEY,
     user_id INTEGER REFERENCES users(id) on DELETE CASCADE,
     -- name VARCHAR(255) NOT NULL REFERENCES users(name),
-    username TEXT UNIQUE NOT NULL,
+    username VARCHAR(255) UNIQUE NOT NULL,
     -- email TEXT NOT NULL REFERENCES users(email),
-    password TEXT NOT NULL,
+    password TEXT ,
     dob DATE NOT NULL,
     gender TEXT NOT NULL,
     interests_id INTEGER[],
@@ -104,7 +104,7 @@ INSERT INTO users(name, email, image, created_at, updated_at) VALUES
 ('fac21testing2', 'fac21testing2@gmail.com', 'https://s.gravatar.com/avatar/c1d1d7338d4df3abb4539002ef96519d?s=480&r=pg&d=https%3A%2F%2Fcdn.auth0.com%2Favatars%2Ffa.png', '2021-06-07 11:59:59.074831+01', '2021-06-07 11:59:59.074831+01');
 
 INSERT INTO interests(interest_name, interest_icon) VALUES
-('Go for a drink', 'https://storyset.com/illustration/outdoor-party/bro'),
+('Go for a Drink', 'https://storyset.com/illustration/outdoor-party/bro'),
 ('Go for a Coffee', 'https://storyset.com/illustration/social-interaction/bro'),
 ('Go for a Walk', 'https://storyset.com/illustration/hiking/amico#92E3A9FF&hide=&hide=complete'),
 ('Coding', 'https://storyset.com/illustration/pair-programming/amico#92E3A9FF&hide=&hide=complete')
