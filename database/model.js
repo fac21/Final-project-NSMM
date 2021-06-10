@@ -189,6 +189,37 @@ function createEvent(
   );
 }
 
+function createResponse(
+  user_id,
+  response_content,
+  event_id
+) {
+  const INSERT_RESPONSE = `
+  INSERT INTO event_response(
+  user_id,
+  response_content,
+  event_id
+ ) VALUES ($1, $2, $3)
+  RETURNING
+  user_id
+  response_content,
+  event_id
+  `;
+  return (
+    db
+      .query(INSERT_RESPONSE, [
+        user_id,
+        response_content,
+        event_id,
+      ])
+      //.then((result) => console.log(result)).catch((error) => { console.log(`error: ${error}`) })
+      .then((res) => {
+        return res.rows;
+      })
+  );
+}
+
+
 function createProfile(
   user_id,
   username,
@@ -237,6 +268,15 @@ function createProfile(
   ))
 }
 
+function getEventIdFromEventTable(user_id) {
+  const eventId = `
+  SELECT event_id FROM events WHERE user_id = $1)
+  `;
+  return db.query(eventId, [user_id]).then((res) => {
+    return res.rows;
+  });
+}
+
 module.exports = {
   getAllInterestsData,
   getAllEventsData,
@@ -252,6 +292,8 @@ module.exports = {
   getUserProfileById,
   getUsersEventsbyUserId,
   getUsersIdUsingEmail,
+  createResponse,
   createProfile,
   getUsersIdFromUsersTableUsingEmail,
+  getEventIdFromEventTable
 };
