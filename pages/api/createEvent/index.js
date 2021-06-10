@@ -1,39 +1,12 @@
-import { createEvent } from "../../../database/model";
-
-// export default async (req, res) => {
-  //const user_id = req.params
-  // const { interests_id, event_title, event_description, location, date, time }= req.body;
-  // console.log(interests_id);
-  // console.log(user_id);
-  //console.log(req.body);
-  //    event_title,
-  //    event_description,
-  //    location,
-  //    date,
-  //    time
-
-  //     return model.createCatName(user_id,
-  //    interests_id,
-  //    event_title,
-  //    event_description,
-  //    location,
-  //    date,
-  //    time)
-  //         .then(() => {
-  //         response.redirect('/events');
-  //     })
-  //       .catch((error) => {
-  //         console.error('error', error);
-  //         response.send(
-  //             `<h1>Unable to create event! :(</h1><a href="/">Back to Homepage</a>`
-  //         );
-  //     });
-//};
-
+import { createEvent, getUsersIdUsingEmail} from "../../../database/model";
+import { getSession } from "next-auth/client";
 
 export default async (req, res) => {
     try {
-         console.log(req.body)
+        const session = await getSession({ req });
+
+      const { user_id }= await getUsersIdUsingEmail(session.user.email);
+
         const { interest_id, event_title,  location, date, time, event_description } = req.body
 
         if (
@@ -51,18 +24,16 @@ export default async (req, res) => {
             .send({ error: ["Missing one or more fields"] });
         }
 
-        const eventDetails = await createEvent(
-          interest_id,
-          event_title,
-          location,
-          date,
-          time,
-          event_description
-        );
-
-      res.status(200).json(eventDetails)
-    //   .then(() => {
-    // response.redirect("/events");
+      const eventDetails = await createEvent(
+        user_id,
+        interest_id,
+        event_title,
+        location,
+        date,
+        time,
+        event_description
+      );
+      res.status(200).json(eventDetails);
 
     } catch (error) {
         // console.error(error);

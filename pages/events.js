@@ -11,6 +11,7 @@ import { useSession } from "next-auth/client";
 
 export async function getServerSideProps() {
   const allEvents = await getAllEventsData();
+  console.log(`allEvents: ${allEvents}`);
   const eventData = JSON.stringify(allEvents);
 
   return {
@@ -19,6 +20,8 @@ export async function getServerSideProps() {
 }
 
 export default function Events({ eventData }) {
+
+  console.log(`eventData: ${eventData}`);
   const [session, loading] = useSession();
   const [content, setContent] = useState();
 
@@ -61,6 +64,7 @@ export default function Events({ eventData }) {
 
   const eventsArray = JSON.parse(eventData);
 
+
   return (
     <>
       <Layout home>
@@ -89,7 +93,7 @@ export default function Events({ eventData }) {
                     <Link href="/events/[id]" as={`/events/${meetup.id}`}>
                       <a>
                         <div key={meetup.id}>
-                          <p>{meetup.user_id}</p>
+                          <p>{meetup.interests_id}</p>
                           <p>
                             {" "}
                             <strong>Event: </strong> {meetup.event_title}
@@ -102,7 +106,10 @@ export default function Events({ eventData }) {
                           <p>
                             <strong>Date:</strong> {ourDate}
                           </p>
-                          <p><strong>Time: </strong>{meetup.time}</p>
+                          <p>
+                            <strong>Time: </strong>
+                            {meetup.time}
+                          </p>
                         </div>
                       </a>
                     </Link>

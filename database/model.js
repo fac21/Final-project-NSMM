@@ -13,7 +13,8 @@ function getAllEventsData() {
   const selectEvents = `
   SELECT * FROM events
   `;
-  return db.query(selectEvents).then((res) => {
+  return db.query(selectEvents)
+    .then((res) => {
     return res.rows;
   });
 }
@@ -37,10 +38,13 @@ function getAllUserDataByUsername(username) {
 }
 
 function getUserDataById(id) {
+
+  console.log(`getUserDataById: ${id}`);
   const selectUserDetailsFromUserTable = `
   SELECT * FROM users WHERE id=$1
   `;
-  return db.query(selectUserDetailsFromUserTable, [id]).then((res) => {
+  return db.query(selectUserDetailsFromUserTable, [id])
+    .then((res) => {
     return res.rows[0];
   });
 }
@@ -92,6 +96,17 @@ function getUsersProfileUsingEmail(email) {
   });
 }
 
+function getUsersIdUsingEmail(email) {
+  const userIdFromUserProfile = `
+  SELECT user_id FROM user_profiles WHERE user_id = (SELECT id FROM users WHERE email = $1)
+  `;
+  return db
+    .query(userIdFromUserProfile, [email])
+    .then((res) => {
+      return res.rows[0];
+    });
+}
+
 function getUsersEventsUsingEmail(email) {
   //get userID from users table using email (found in session and passed in)
   //get userEvents where user id returned above = the user_id in the user_profile table
@@ -114,6 +129,7 @@ function getUsersEventsbyUserId(id) {
 }
 
 function createEvent(
+  user_id,
   interests_id,
   event_title,
   location,
@@ -123,13 +139,14 @@ function createEvent(
 ) {
   const INSERT_EVENT = `
   INSERT INTO events(
+  user_id,
    interests_id,
    event_title,
    location,
    date,
    time,
    event_description
- ) VALUES ($1, $2, $3,$4,$5,$6)
+ ) VALUES ($1, $2, $3,$4,$5,$6,$7)
   RETURNING
   user_id
    interests_id,
@@ -142,6 +159,7 @@ function createEvent(
   return (
     db
       .query(INSERT_EVENT, [
+        user_id,
         interests_id,
         event_title,
         location,
@@ -170,4 +188,5 @@ module.exports = {
   getAllUserData,
   getUserProfileById,
   getUsersEventsbyUserId,
+  getUsersIdUsingEmail,
 };
