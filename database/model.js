@@ -39,7 +39,6 @@ function getAllUserDataByUsername(username) {
 
 function getUserDataById(id) {
 
-  console.log(`getUserDataById: ${id}`);
   const selectUserDetailsFromUserTable = `
   SELECT * FROM users WHERE id=$1
   `;
@@ -107,6 +106,21 @@ function getUsersIdUsingEmail(email) {
     });
 }
 
+function getUsersIdFromUsersTableUsingEmail(email) {
+  console.log(`getUsersIdFromUsersTableUsingEmail: ${email}`);
+  const userIdFromUsersTable = `
+  SELECT id FROM users WHERE email=$1
+  `;
+  return db
+    .query(userIdFromUsersTable, [email])
+    // .then((result) => console.log(result.rows[0]))
+    // .catch((error) => {
+    //   console.log(`error: ${error}`)
+  .then((res) => {
+  return res.rows[0]
+    })
+}
+
 function getUsersEventsUsingEmail(email) {
   //get userID from users table using email (found in session and passed in)
   //get userEvents where user id returned above = the user_id in the user_profile table
@@ -137,6 +151,7 @@ function createEvent(
   time,
   event_description
 ) {
+  // console.log(`createEvent: ${location}`);
   const INSERT_EVENT = `
   INSERT INTO events(
   user_id,
@@ -174,6 +189,54 @@ function createEvent(
   );
 }
 
+function createProfile(
+  user_id,
+  username,
+  dob,
+  gender,
+  // interests_id,
+  location,
+  bio
+) {
+  console.log('are you tehre')
+  console.log(`createprofile: ${username}`);
+  const INSERT_PROFILE = `
+  INSERT INTO user_profiles(
+  user_id,
+  username,
+  dob,
+  gender,
+ 
+  location,
+  bio
+ ) VALUES ($1, $2, $3,$4,$5,$6)
+  RETURNING
+ user_id,
+  username,
+  dob,
+  gender,
+
+  location,
+  bio
+  `;
+  return (
+    db
+      .query(INSERT_PROFILE, [
+        user_id,
+        username,
+        dob,
+        gender,
+        // interests_id,
+        location,
+        bio,
+      ])
+      .then((result) => console.log(result)).catch((error) => { console.log(`error: ${error}`) }
+      // .then((res) => {
+      //   return res.rows;
+      // })
+  ))
+}
+
 module.exports = {
   getAllInterestsData,
   getAllEventsData,
@@ -189,4 +252,6 @@ module.exports = {
   getUserProfileById,
   getUsersEventsbyUserId,
   getUsersIdUsingEmail,
+  createProfile,
+  getUsersIdFromUsersTableUsingEmail,
 };

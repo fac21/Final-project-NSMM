@@ -10,7 +10,7 @@ import { useSession } from "next-auth/client";
 
 export async function getServerSideProps() {
   const allEvents = await getAllEventsData();
-  console.log(`allEvents: ${allEvents}`);
+  // console.log(`allEvents: ${allEvents}`);
   const eventData = JSON.stringify(allEvents);
 
   return {

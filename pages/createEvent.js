@@ -82,20 +82,22 @@ export default function CreateEvent() {
   return (
     <Layout>
       <div>
-        <Head>
-          <title>{siteTitle} | Create Event</title>
-        </Head>
-        <main className={styles.main}>
+      <Head>
+            <title>{siteTitle} | Create Event</title>
+      </Head>
+
+       <main className={styles.main}>
           <Image
             src="/images/friends/Social interaction-bro.svg"
             alt="picture of friends"
             height={250}
             width={250}
           ></Image>
-          <div>
-            <h1>Hey {session.user.name}!</h1>
-            <h2>Fill out the following form to create an event.</h2>
-          </div>
+
+        <div>
+          <h1>Hey {session.user.name}!</h1>
+          <h2>Fill out the following form to create an event.</h2>
+        </div>
 
           <form onSubmit={addEventToDb}>
             {/* onSubmit={addEventToDb} action="/api/createEvent" method="POST"*/}
@@ -148,22 +150,10 @@ export default function CreateEvent() {
               </button>
             </div>
           </form>
+
         </main>
-      </div>
+    </div>
       <Nav />
     </Layout>
   );
 }
-
-// function post(request, response) {
-//   const data = request.body;
-//   const values = Object.values(data);
-//   db.query(
-//     "INSERT INTO users(username, age, location) VALUES($1, $2, $3)",
-//     values
-//   ).then(() => {
-//     response.redirect("/");
-//   });
-// }
-
-// module.exports = { get, post };
