@@ -120,7 +120,7 @@ INSERT INTO event_response (user_id, response_content, event_id) VALUES
 (1, 'Looking forward to having a beer after a long week – see you there!', 2)
 ;
 
-INSERT INTO user_profiles(user_id, username, password, dob, gender, interests_id, location, bio) VALUES (1, 'chumUser1', 'chumUser1', '1980-01-01', 'male', (ARRAY[1,2]), 'London', 'I like coding and would like to meet for coffee or a pint')
+INSERT INTO user_profiles(user_id, username, password, dob, gender, interests_id, location, bio) VALUES (1, 'chumUser1', 'chumUser1', '1980-01-01', 'male', (ARRAY[1,2, 4]), 'London', 'I like coding and would like to meet for coffee or a pint'), (2, 'chumUser2', 'chumUser2', '1980-01-01', 'female', (ARRAY[1,2,3]), 'London', 'I love hiking and nature and would be keen to mix this up with meeting for the odd coffee')
 ;
 
 
