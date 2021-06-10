@@ -4,6 +4,7 @@ import styles from "../styles/Home.module.css";
 import Layout, { siteTitle } from "../components/Layout";
 import Link from "next/link";
 import Nav from '../components/Nav';
+import Header from '../components/Header';
 import React from "react";
 import { signIn, signOut, useSession } from "next-auth/client";
 
@@ -16,7 +17,7 @@ export default function LogIn() {
           <title>Auth Examples</title>
           <link rel="icon" href="/favicon.ico" />
         </Head>
-
+        <Header/>
         <main className={styles.main}>
           {!session && (
             <>
