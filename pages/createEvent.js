@@ -102,8 +102,6 @@ export default function CreateEvent() {
           </div>
           <div>
             <label htmlFor="time">Time</label>
-          </div>
-          <div>
             <select name="time" id="time" required>
               <option value="morning">Morning</option>
               <option value="afternoon">Afternoon</option>
