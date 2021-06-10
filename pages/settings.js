@@ -60,8 +60,7 @@ export default function Settings() {
         </Head>
         <main>
           <div>
-            <h1>Settings Page</h1>
-            <br />
+        
             <button onClick={signOut}>Log Out</button>
           </div>
         </main>

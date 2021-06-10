@@ -75,7 +75,7 @@ export default function Events({ eventData }) {
                 <button>Create Event</button>
               </a>
             </Link>
-            <p>(Need to insert a filter)</p>
+
             <div className="styles.events">
               {eventsArray.map((meetup) => {
                 const gbDate = new Date(meetup.date);
@@ -88,7 +88,7 @@ export default function Events({ eventData }) {
                     <Link href="/events/[id]" as={`/events/${meetup.id}`}>
                       <a>
                         <div key={meetup.id}>
-                          <p>{meetup.interests_id}</p>
+                          {/* <p>{meetup.interests_id}</p> */}
                           <p>
                             {" "}
                             <strong>Event: </strong> {meetup.event_title}
@@ -105,7 +105,11 @@ export default function Events({ eventData }) {
                             <strong>Time: </strong>
                             {meetup.time}
                           </p>
+                          <p>
+                            <strong>Click here to read more</strong>
+                          </p>
                         </div>
+                        <hr></hr>
                       </a>
                     </Link>
                   </>

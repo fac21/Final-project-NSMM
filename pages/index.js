@@ -28,6 +28,7 @@ export default function LogIn() {
               ></Image>
               Not signed in <br />
               <button onClick={signIn}>Sign In</button>
+              <BlankNav />
             </>
           )}
           {session && (
@@ -45,7 +46,7 @@ export default function LogIn() {
           )}
         </main>
       </div>
-      <BlankNav />
+      
     </Layout>
   );
 }

@@ -100,7 +100,7 @@ export default function MyProfile() {
                       {event.event_description}
                       <br />
                       <Link href="/events/[id]" as={`events/${event.id}`}>
-                        <a> Click here to visit this event page</a>
+                        <a><strong>Click here to visit this event page</strong> </a>
                       </Link>
                     </li>
                   ))}
