@@ -94,11 +94,11 @@ export default function MyProfile() {
                   </li>
                 ))}
               </ul>
+              <br />
+              <br />
+              <button onClick={handleClick}>Edit your profile</button>
             </>
           )}
-          <br />
-          <br />
-          <button onClick={handleClick}>Edit your profile</button>
         </div>
       </main>
       <Nav />
