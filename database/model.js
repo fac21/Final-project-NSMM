@@ -107,7 +107,6 @@ function getUsersIdUsingEmail(email) {
 }
 
 function getUsersIdFromUsersTableUsingEmail(email) {
-  console.log(`getUsersIdFromUsersTableUsingEmail: ${email}`);
   const userIdFromUsersTable = `
   SELECT id FROM users WHERE email=$1
   `;
@@ -229,15 +228,15 @@ function createProfile(
   location,
   bio
 ) {
-  console.log('are you tehre')
-  console.log(`createprofile: ${username}`);
+  // console.log('are you tehre')
+  // console.log(`createprofile: ${username}`);
   const INSERT_PROFILE = `
   INSERT INTO user_profiles(
   user_id,
   username,
   dob,
   gender,
- 
+
   location,
   bio
  ) VALUES ($1, $2, $3,$4,$5,$6)
@@ -261,20 +260,24 @@ function createProfile(
         location,
         bio,
       ])
-      .then((result) => console.log(result)).catch((error) => { console.log(`error: ${error}`) }
-      // .then((res) => {
-      //   return res.rows;
-      // })
-  ))
+      // .then((result) => console.log(result)).catch((error) => { console.log(`error: ${error}`) }
+      .then((res) => {
+        return res.rows;
+      })
+  )
 }
 
 function getEventIdFromEventTable(user_id) {
+  // console.log(`user_id: ${user_id}`)
   const eventId = `
-  SELECT event_id FROM events WHERE user_id = $1)
+  SELECT id FROM events WHERE user_id = $1
   `;
-  return db.query(eventId, [user_id]).then((res) => {
-    return res.rows;
-  });
+  return db
+    .query(eventId, [user_id])
+    // .then((result) => console.log(result.rows)).catch((error) => { console.log(`error: ${error}`) })
+    .then((res) => {
+      return res.rows[0];
+    });
 }
 
 module.exports = {

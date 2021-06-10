@@ -6,13 +6,12 @@ import { getSession } from "next-auth/client";
 
 export default async (req, res) => {
     try {
-         console.log(req.body)
+
     const session = await getSession({ req });
 
     const { id } = await getUsersIdFromUsersTableUsingEmail(
       session.user.email
     );
-        console.log(`user_id: ${id}`);
         const user_id = id;
 
         const { username, dob, gender,
@@ -40,7 +39,6 @@ export default async (req, res) => {
       bio
     );
 
-        console.log(`profileDetails:${profileDetails}`);
     res.status(200).json(profileDetails);
   } catch (error) {
     // console.error(error);
