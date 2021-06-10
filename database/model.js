@@ -113,11 +113,11 @@ function getUsersIdFromUsersTableUsingEmail(email) {
   `;
   return db
     .query(userIdFromUsersTable, [email])
-    .then((result) => console.log(result.rows[0]))
-    .catch((error) => {
-      console.log(`error: ${error}`)
-  // .then((res) => {
-  // return res.rows[0]
+    // .then((result) => console.log(result.rows[0]))
+    // .catch((error) => {
+    //   console.log(`error: ${error}`)
+  .then((res) => {
+  return res.rows[0]
     })
 }
 
@@ -151,7 +151,7 @@ function createEvent(
   time,
   event_description
 ) {
-  console.log(`createEvent: ${location}`);
+  // console.log(`createEvent: ${location}`);
   const INSERT_EVENT = `
   INSERT INTO events(
   user_id,
@@ -194,7 +194,7 @@ function createProfile(
   username,
   dob,
   gender,
-  interests_id,
+  // interests_id,
   location,
   bio
 ) {
@@ -206,16 +206,16 @@ function createProfile(
   username,
   dob,
   gender,
-  interests_id,
+ 
   location,
   bio
- ) VALUES ($1, $2, $3,$4,$5,$6,$7)
+ ) VALUES ($1, $2, $3,$4,$5,$6)
   RETURNING
  user_id,
   username,
   dob,
   gender,
-  interests_id,
+
   location,
   bio
   `;
@@ -226,15 +226,15 @@ function createProfile(
         username,
         dob,
         gender,
-        interests_id,
+        // interests_id,
         location,
         bio,
       ])
-      // .then((result) => console.log(result)).catch((error) => { console.log(`error: ${error}`)
-      .then((res) => {
-        return res.rows;
-      })
-  );
+      .then((result) => console.log(result)).catch((error) => { console.log(`error: ${error}`) }
+      // .then((res) => {
+      //   return res.rows;
+      // })
+  ))
 }
 
 module.exports = {

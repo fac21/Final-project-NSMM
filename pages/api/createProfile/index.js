@@ -9,21 +9,21 @@ export default async (req, res) => {
          console.log(req.body)
     const session = await getSession({ req });
 
-    const { user_id } = await getUsersIdFromUsersTableUsingEmail(
+    const { id } = await getUsersIdFromUsersTableUsingEmail(
       session.user.email
     );
-        console.log(`user_id: ${user_id}`);
+        console.log(`user_id: ${id}`);
+        const user_id = id;
 
-    const { username, dob, gender, interests_id, location, bio } =
+        const { username, dob, gender,
+            // interests_id,
+            location, bio } =
       req.body;
 
     if (
       !username ||
       !dob ||
-      !location ||
       !gender ||
-      !location ||
-      !interests_id ||
       !location ||
       !bio
     ) {
@@ -31,11 +31,11 @@ export default async (req, res) => {
     }
 
     const profileDetails = await createProfile(
-
+        user_id,
       username,
       dob,
       gender,
-      interests_id,
+    //   interests_id,
       location,
       bio
     );

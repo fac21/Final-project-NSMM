@@ -19,7 +19,7 @@ export default function CreateProfile() {
         username: event.target.username.value,
         dob: event.target.dob.value,
         gender: event.target.gender.value,
-        interests_id: event.target.interests_id.value,
+        // interests_id: event.target.interests_id.value,
         location: event.target.location.value,
         bio: event.target.bio.value,
       }),
@@ -113,7 +113,7 @@ export default function CreateProfile() {
                 <option value="rather-not-say">Rather not say</option>
               </select>
             </div>
-            <div>
+            {/* <div>
               <label htmlFor="interests_id">
 
                 Select interests (please select at least one)
@@ -150,7 +150,7 @@ export default function CreateProfile() {
                 value="4"
               ></input>
               <label htmlFor="interest3"> Coding</label>
-            </div>
+            </div> */}
             <div>
               <label htmlFor="location">Location</label>
               <br />
