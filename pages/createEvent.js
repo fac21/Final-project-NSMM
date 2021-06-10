@@ -4,12 +4,12 @@ import { useSession } from "next-auth/client";
 import Nav from "../components/Nav";
 import Layout, { siteTitle } from "../components/Layout";
 import Link from "next/link";
+import styles from "../styles/Home.module.css";
+import Image from "next/image";
 import { useRouter } from "next/router";
 
-// import stylesheet from "../styles/styles";
-
 export default function CreateEvent() {
-    const router = useRouter();
+  const router = useRouter();
 
   const addEventToDb = (event) => {
     event.preventDefault(); // don't redirect the page
@@ -53,16 +53,24 @@ export default function CreateEvent() {
   if (!session) {
     return (
       <Layout>
-        <main>
-          <div>
-            <h1>You aren't signed in, please sign in first</h1>
-            <button>
-              <Link href="/">
-                <a>Click here for the log in page</a>
-              </Link>
-            </button>
-          </div>
-        </main>
+        <div className={styles.container}>
+          <main>
+            <Image
+              src="/images/friends/Social interaction-bro.svg"
+              alt="picture of friends"
+              height={250}
+              width={250}
+            ></Image>
+            <div>
+              <h1>You aren't signed in, please sign in first</h1>
+              <button>
+                <Link href="/">
+                  <a>Click here for the log in page</a>
+                </Link>
+              </button>
+            </div>
+          </main>
+        </div>
       </Layout>
     );
   }
@@ -76,61 +84,75 @@ export default function CreateEvent() {
       <div>
       <Head>
             <title>{siteTitle} | Create Event</title>
-          </Head>
+      </Head>
+
+       <main className={styles.main}>
+          <Image
+            src="/images/friends/Social interaction-bro.svg"
+            alt="picture of friends"
+            height={250}
+            width={250}
+          ></Image>
+
         <div>
           <h1>Hey {session.user.name}!</h1>
           <h2>Fill out the following form to create an event.</h2>
         </div>
 
-        <form onSubmit={addEventToDb}>
-          <div>
-          <label htmlFor="interest_id">Interest Type</label>
-          <select id="interest_id" name="interest_id" required>
-            <option value="2">Coffee</option>
-            <option value="1">Drink</option>
-            <option value="3">Walk</option>
-            <option value="4">Coding</option>
-          </select>
-          </div>
-          <div>
-            <label htmlFor="event_title">Event Title</label>
-            <input
-              type="text"
-              id="event_title"
-              name="event_title"
-              required
-            ></input>
-          </div>
-          <div>
-            <label htmlFor="location">Location</label>
-            <input type="text" id="location" name="location" required></input>
-          </div>
-          <div>
-            <label htmlFor="date">Date</label>
-            <input type="date" id="date" name="date" required></input>
-          </div>
-          <div>
-            <label htmlFor="time">Time</label>
-            <select name="time" id="time" required>
-              <option value="morning">Morning</option>
-              <option value="afternoon">Afternoon</option>
-              <option value="evening">Evening</option>
-            </select>
+          <form onSubmit={addEventToDb}>
+            {/* onSubmit={addEventToDb} action="/api/createEvent" method="POST"*/}
             <div>
-              <label htmlFor="event_description">Specify details</label>
-              <textarea
-                type="text"
-                id="event_description"
-                name="event_description"
-                required
-              ></textarea>
+              <label htmlFor="interest_id">Interest Type</label>
+              <select id="interest_id" name="interest_id" required>
+                <option value="2">Coffee</option>
+                <option value="1">Drink</option>
+                <option value="3">Walk</option>
+                <option value="4">Coding</option>
+              </select>
             </div>
-          </div>
-          <div>
-            <button onClick={handleClick} type="submit">Submit</button>
-          </div>
-        </form>
-      </div>
+            <div>
+              <label htmlFor="event_title">Event Title</label>
+              <input
+                type="text"
+                id="event_title"
+                name="event_title"
+                required
+              ></input>
+            </div>
+            <div>
+              <label htmlFor="location">Location</label>
+              <input type="text" id="location" name="location" required></input>
+            </div>
+            <div>
+              <label htmlFor="date">Date</label>
+              <input type="date" id="date" name="date" required></input>
+            </div>
+            <div>
+              <label htmlFor="time">Time</label>
+              <select name="time" id="time" required>
+                <option value="morning">Morning</option>
+                <option value="afternoon">Afternoon</option>
+                <option value="evening">Evening</option>
+              </select>
+              <div>
+                <label htmlFor="event_description">Specify details</label>
+                <textarea
+                  type="text"
+                  id="event_description"
+                  name="event_description"
+                  required
+                ></textarea>
+              </div>
+            </div>
+            <div>
+              <button onClick={handleClick} type="submit">
+                Submit
+              </button>
+            </div>
+          </form>
+
+        </main>
+    </div>
       <Nav />
     </Layout>
   );

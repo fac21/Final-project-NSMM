@@ -2,7 +2,6 @@ import Head from "next/head";
 import styles from "../../styles/Home.module.css";
 import Layout, { siteTitle } from "../../components/Layout";
 import Nav from "../../components/Nav";
-import Header from '../../components/Header';
 import {
   getAllEventsData,
   getEventById,
@@ -34,7 +33,7 @@ export async function getStaticProps({ params }) {
   const eventData = await getEventById(params.id);
   const eventDataStr = JSON.stringify(eventData);
 
-  console.log(`eventData.user_id:${eventData.user_id}`)
+  console.log(`eventData.user_id:${eventData.user_id}`);
 
   const userDataById = await getUserDataById(eventData.user_id);
   // console.log(`userDataById: ${userDataById}`);
@@ -98,21 +97,20 @@ export default function Event({
     return (
       <Layout>
         <div className={styles.not_signed_in}>
-      <Head>
+          <Head>
             <title>{siteTitle.title} | Not Signed In</title>
           </Head>
-          <Header/>
-      <main>
-        <div>
-          <h1>You aren't signed in, please sign in first</h1>
-          <button>
-              <Link href="/">
-                <a>Click here for the log in page</a>
-              </Link>
-            </button>
+          <main>
+            <div>
+              <h1>You aren't signed in, please sign in first</h1>
+              <button>
+                <Link href="/">
+                  <a>Click here for the log in page</a>
+                </Link>
+              </button>
+            </div>
+          </main>
         </div>
-      </main>
-      </div>
       </Layout>
     );
   }
@@ -124,7 +122,6 @@ export default function Event({
           <Head>
             <title>{siteTitle.title} | Single event</title>
           </Head>
-          <Header/>
           <main className={styles.main}>
             <div key={eventDataParsed.id}>
               <h1>{eventDataParsed.event_title}</h1>

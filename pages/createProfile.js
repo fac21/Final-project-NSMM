@@ -1,7 +1,7 @@
 // import Image from "next/image";
 import Head from "next/head";
 import Link from "next/link";
-import Nav from "../components/Nav";
+import BlankNav from "../components/BlankNav";
 import Layout, { siteTitle } from "../components/Layout";
 import { useState, useEffect } from "react";
 import { options, useSession } from "next-auth/client";
@@ -53,19 +53,19 @@ export default function CreateProfile() {
     return (
       <Layout>
         <div>
-        <Head>
+          <Head>
             <title>{siteTitle} | Not Signed In</title>
           </Head>
-        <main>
-          <div>
-            <h1>You aren't signed in, please sign in first</h1>
-            <button>
-              <Link href="/">
-                <a>Click here for the log in page</a>
-              </Link>
-            </button>
-          </div>
-        </main>
+          <main>
+            <div>
+              <h1>You aren't signed in, please sign in first</h1>
+              <button>
+                <Link href="/">
+                  <a>Click here for the log in page</a>
+                </Link>
+              </button>
+            </div>
+          </main>
         </div>
       </Layout>
     );
@@ -166,7 +166,7 @@ export default function CreateProfile() {
           </form>
         </main>
       </div>
-      <Nav />
+      <BlankNav />
     </Layout>
   );
 }
