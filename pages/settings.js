@@ -1,4 +1,4 @@
-// import Image from "next/image";
+import Image from "next/image";
 import Head from "next/head";
 import Link from "next/link";
 import { useState, useEffect } from "react";
@@ -48,6 +48,12 @@ export default function Settings() {
   }
   return (
     <Layout>
+      <Image
+        src="/images/friends/True Friends-bro.svg"
+        alt="picture of friends"
+        height={450}
+        width={450}
+      ></Image>
       <div>
         <Head>
           <title>{siteTitle} | Settings</title>
@@ -55,9 +61,7 @@ export default function Settings() {
         <main>
           <div>
             <h1>Settings Page</h1>
-            <p>
-              (Need to Insert ability to change password and log out button)
-            </p>
+            <br />
             <button onClick={signOut}>Log Out</button>
           </div>
         </main>

@@ -6,12 +6,13 @@ import Link from "next/link";
 import Nav from "../components/Nav";
 import React from "react";
 import { signIn, signOut, useSession } from "next-auth/client";
+import BlankNav from "../components/BlankNav";
 
 export default function LogIn() {
   const [session, loading] = useSession();
   return (
     <Layout>
-      <div className={styles.container}>
+      <div>
         <Head>
           <title>Auth Examples</title>
           <link rel="icon" href="/favicon.ico" />
@@ -20,10 +21,10 @@ export default function LogIn() {
           {!session && (
             <>
               <Image
-                src="/images/friends/True friends-bro.svg"
+                src="/images/friends/Ethnic friendship-bro.svg"
                 alt="picture of friends"
-                width={500}
-                height={500}
+                width={425}
+                height={425}
               ></Image>
               Not signed in <br />
               <button onClick={signIn}>Sign In</button>
@@ -32,10 +33,10 @@ export default function LogIn() {
           {session && (
             <>
               <Image
-                src="/images/friends/True friends-bro.svg"
+                src="/images/friends/Ethnic friendship-bro.svg"
                 alt="picture of friends"
-                width={500}
-                height={500}
+                width={450}
+                height={450}
               ></Image>
               {/* Signed in as {session.user.email} <br />
               <button onClick={signOut}>sign out</button> */}
@@ -44,6 +45,7 @@ export default function LogIn() {
           )}
         </main>
       </div>
+      <BlankNav />
     </Layout>
   );
 }

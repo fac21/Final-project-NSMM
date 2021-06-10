@@ -19,7 +19,6 @@ export async function getServerSideProps() {
 }
 
 export default function Events({ eventData }) {
-
   console.log(`eventData: ${eventData}`);
   const [session, loading] = useSession();
   const [content, setContent] = useState();
@@ -62,11 +61,10 @@ export default function Events({ eventData }) {
 
   const eventsArray = JSON.parse(eventData);
 
-
   return (
     <>
       <Layout home>
-        <div className={styles.container}>
+        <div>
           <Head>
             <title>{siteTitle} | Chumboard</title>
           </Head>

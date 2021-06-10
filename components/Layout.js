@@ -2,8 +2,6 @@ import Head from "next/head";
 import Link from "next/link";
 import Image from "next/image";
 import styles from "./Layout.module.css";
-//import utilStyles from '../styles/utils.module.css'
-// import Header from "./Header";
 
 const name = "Chummy";
 export const siteTitle = "Chummy";
