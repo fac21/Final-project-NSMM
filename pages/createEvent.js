@@ -1,3 +1,4 @@
+import Head from "next/head";
 import { useState, useEffect } from "react";
 import { useSession } from "next-auth/client";
 import Nav from "../components/Nav";
@@ -67,6 +68,9 @@ export default function CreateEvent() {
   return (
     <Layout>
       <div>
+      <Head>
+            <title>{siteTitle} | Create Event</title>
+          </Head>
         <div>
           <h1>Hey {session.user.name}!</h1>
           <h2>Fill out the following form to create an event.</h2>

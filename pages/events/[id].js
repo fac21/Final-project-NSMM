@@ -2,6 +2,7 @@ import Head from "next/head";
 import styles from "../../styles/Home.module.css";
 import Layout, { siteTitle } from "../../components/Layout";
 import Nav from "../../components/Nav";
+import Header from '../../components/Header';
 import {
   getAllEventsData,
   getEventById,
@@ -94,21 +95,35 @@ export default function Event({
 
   if (!session) {
     return (
+      <Layout>
+        <div className={styles.not_signed_in}>
+      <Head>
+            <title>{siteTitle.title} | Not Signed In</title>
+          </Head>
+          <Header/>
       <main>
         <div>
           <h1>You aren't signed in, please sign in first</h1>
+          <button>
+              <Link href="/">
+                <a>Click here for the log in page</a>
+              </Link>
+            </button>
         </div>
       </main>
+      </div>
+      </Layout>
     );
   }
 
   return (
     <>
       <Layout>
-        <div>
+        <div className={styles.container}>
           <Head>
             <title>{siteTitle.title} | Single event</title>
           </Head>
+          <Header/>
           <main className={styles.main}>
             <div key={eventDataParsed.id}>
               <h1>{eventDataParsed.event_title}</h1>

@@ -8,8 +8,24 @@
   height: 100vh;
 }
 
+.profile {
+  padding: 0 0.5rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.not_signed_in {
+  padding: 0 0.5rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
 .main {
-  padding: 5rem 0;
+  padding-bottom: 100px;
   flex: 1;
   display: flex;
   flex-direction: column;
@@ -24,9 +40,10 @@
   justify-content: space-around;
   align-items: center;
   background-color: #fb9300;
-  position: sticky;
+  position: fixed;
+  /* position: sticky; */
   margin-top: auto;
-  position: absolute;
+  /* position: absolute; */
   left: 0;
   bottom: 0;
   overflow: hidden;
@@ -37,6 +54,11 @@
   justify-content: center;
   flex-direction: column;
   margin-bottom: 35px;
+}
+
+.header {
+  font-family: BlinkMacSystemFont;
+  color: #fb9300;
 }
 
 .title a {

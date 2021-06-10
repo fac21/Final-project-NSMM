@@ -1,4 +1,5 @@
 // import Image from "next/image";
+import Head from "next/head";
 import Link from "next/link";
 import Nav from "../components/Nav";
 import Layout, { siteTitle } from "../components/Layout";
@@ -26,6 +27,10 @@ export default function CreateProfile() {
   if (!session) {
     return (
       <Layout>
+        <div>
+        <Head>
+            <title>{siteTitle} | Not Signed In</title>
+          </Head>
         <main>
           <div>
             <h1>You aren't signed in, please sign in first</h1>
@@ -36,11 +41,16 @@ export default function CreateProfile() {
             </button>
           </div>
         </main>
+        </div>
       </Layout>
     );
   }
   return (
     <Layout createProfile>
+      <div>
+      <Head>
+            <title>{siteTitle} | Create Profile</title>
+          </Head>
       <main>
         <div>
           <h1>Hey {session.user.name}, create your user profile </h1>
@@ -104,6 +114,7 @@ export default function CreateProfile() {
           <input type="submit" value="Submit"></input>
         </form>
       </main>
+      </div>
       <Nav />
     </Layout>
   );

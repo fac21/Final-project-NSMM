@@ -1,5 +1,6 @@
 // import Image from "next/image";
 import Link from "next/link";
+import Head from "next/head";
 import { useState, useEffect } from "react";
 import { useSession } from "next-auth/client";
 import Nav from "../../components/Nav";
@@ -87,6 +88,10 @@ export default function Profile({ userDataStr, userProfileStr }) {
   }
   return (
     <Layout>
+      <div>
+      <Head>
+            {/* <title>{siteTitle} |  {session.user.name}</title> */}
+          </Head>
       <main>
         <div>
           <h1>{session.user.name}'s Profile</h1>
@@ -124,6 +129,7 @@ export default function Profile({ userDataStr, userProfileStr }) {
           {/* <button onClick={handleClick}>Edit your profile</button> */}
         </div>
       </main>
+      </div>
       <Nav />
     </Layout>
   );

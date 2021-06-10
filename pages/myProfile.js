@@ -1,8 +1,11 @@
 // import Image from "next/image";
+import Head from "next/head";
 import Link from "next/link";
+import styles from "../styles/Home.module.css";
 import { useState, useEffect } from "react";
 import { useSession } from "next-auth/client";
 import Nav from "../components/Nav";
+import Header from '../components/Header';
 import Layout, { siteTitle } from "../components/Layout";
 import { useRouter } from "next/router";
 
@@ -36,6 +39,10 @@ export default function MyProfile() {
   if (!session) {
     return (
       <Layout>
+        <div>
+        <Head>
+            <title>{siteTitle} | Not Signed In</title>
+          </Head>
         <main>
           <div>
             <h1>You aren't signed in, please sign in first</h1>
@@ -46,6 +53,7 @@ export default function MyProfile() {
             </button>
           </div>
         </main>
+        </div>
       </Layout>
     );
   }
@@ -57,7 +65,12 @@ export default function MyProfile() {
 
   return (
     <Layout>
-      <main>
+      <div className={styles.profile}>
+      <Head>
+            <title>{siteTitle} | My Profile</title>
+          </Head>
+          <Header/>
+      <main className={styles.main}>
         <div>
           <h1>{session.user.name}'s Profile</h1>
           {userData && (
@@ -101,6 +114,7 @@ export default function MyProfile() {
           <button onClick={handleClick}>Edit your profile</button>
         </div>
       </main>
+      </div>
       <Nav />
     </Layout>
   );
