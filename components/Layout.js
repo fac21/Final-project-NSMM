@@ -2,8 +2,6 @@ import Head from "next/head";
 import Link from "next/link";
 import Image from "next/image";
 import styles from "./Layout.module.css";
-//import utilStyles from '../styles/utils.module.css'
-import Header from "./Header";
 
 const name = "Chummy";
 export const siteTitle = "Chummy";
@@ -25,7 +23,7 @@ export default function Layout({ children }) {
         <meta name="twitter:card" content="summary_large_image" />
       </Head>
 
-      {/* <Header className={styles.header}/> */}
+      <h1 className={styles.header}>chummy</h1>
 
       <main className={styles.main}>{children}</main>
     </div>

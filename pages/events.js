@@ -4,7 +4,6 @@ import styles from "../styles/Home.module.css";
 import Layout, { siteTitle } from "../components/Layout";
 import Link from "next/link";
 import Nav from "../components/Nav";
-import Header from '../components/Header'
 import { getAllEventsData } from "../database/model";
 import { useState, useEffect } from "react";
 import { useSession } from "next-auth/client";
@@ -20,7 +19,6 @@ export async function getServerSideProps() {
 }
 
 export default function Events({ eventData }) {
-
   console.log(`eventData: ${eventData}`);
   const [session, loading] = useSession();
   const [content, setContent] = useState();
@@ -43,20 +41,19 @@ export default function Events({ eventData }) {
     return (
       <Layout>
         <div className={styles.not_signed_in}>
-        <Head>
+          <Head>
             <title>{siteTitle} | Not Signed In</title>
           </Head>
-          <Header/>
-        <main>
-          <div>
-            <h1>You aren't signed in, please sign in first</h1>
-            <button>
-              <Link href="/">
-                <a>Click here for the log in page</a>
-              </Link>
-            </button>
-          </div>
-        </main>
+          <main>
+            <div>
+              <h1>You aren't signed in, please sign in first</h1>
+              <button>
+                <Link href="/">
+                  <a>Click here for the log in page</a>
+                </Link>
+              </button>
+            </div>
+          </main>
         </div>
       </Layout>
     );
@@ -64,15 +61,13 @@ export default function Events({ eventData }) {
 
   const eventsArray = JSON.parse(eventData);
 
-
   return (
     <>
       <Layout home>
-        <div className={styles.container}>
+        <div>
           <Head>
             <title>{siteTitle} | Chumboard</title>
           </Head>
-          <Header/>
           <main className={styles.main}>
             <h1 className={styles.title}>Chumboard</h1>
             <Link href="/createEvent">
