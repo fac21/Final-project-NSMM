@@ -53,17 +53,23 @@ export default function CreateProfile() {
           </Head>
       <main>
         <div>
-          <h1>Hey {session.user.name}, create your user profile </h1>
+          <h1>
+            Hey {session.user.name}, welcome to Chummy! <br />
+            Please create your user profile...
+          </h1>
           <p> Complete the following: </p>
         </div>
         <form>
           <div>
-            <label>Date of Birth</label>
-            <input type="date"></input>
+            <label htmlFor="dob">Date of Birth</label>
+            <br />
+            <input type="date" name="dob" id="dob" required></input>
           </div>
           <div>
-            <label>Gender</label>
-            <select name="gender" id="gender">
+            <label htmlFor="">Gender</label>
+            <br />
+            <select name="gender" id="gender" required>
+              <option value="select">Select your option</option>
               <option value="male">Male</option>
               <option value="female">Female</option>
               <option value="non-binary">Non-binary</option>
@@ -71,44 +77,52 @@ export default function CreateProfile() {
             </select>
           </div>
           <div>
-            <label>Location</label>
-            <input type="text"></input>
+            <label htmlFor="location">Location</label>
+            <br />
+            <input type="text" name="location" id="location" required></input>
           </div>
           <div>
-            <label>Tell us a bit about yourself </label>
-            <textarea type="text"></textarea>
+            <label htmlFor="bio">Tell us a bit about yourself </label>
+            <br />
+            <textarea type="text" name="bio" id="bio" required></textarea>
           </div>
           <div>
-            <label> Select interests</label>
-
+            <label htmlFor="location">
+              {" "}
+              Select interests (please select at least one)
+            </label>
+            <br />
             <input
               type="checkbox"
               id="interest1"
               name="interest1"
               value="drink"
             ></input>
-            <label for="interest1"> Go for a drink</label>
+            <label htmlFor="interest1"> Go for a drink</label>
+            <br />
             <input
               type="checkbox"
               id="interest2"
               name="interest2"
               value="coffee"
             ></input>
-            <label for="interest2"> Go for coffee</label>
+            <label htmlFor="interest2"> Go for coffee</label>
+            <br />
             <input
               type="checkbox"
               id="interest3"
               name="interest3"
               value="walk"
             ></input>
-            <label for="interest3"> Go for a walk</label>
+            <label htmlFor="interest3"> Go for a walk</label>
+            <br />
             <input
               type="checkbox"
               id="interest3"
               name="interest3"
               value="coding"
             ></input>
-            <label for="interest3"> Coding</label>
+            <label htmlFor="interest3"> Coding</label>
           </div>
 
           <input type="submit" value="Submit"></input>

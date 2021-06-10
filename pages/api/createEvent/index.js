@@ -60,7 +60,9 @@ export default async (req, res) => {
           event_description
         );
 
-        res.status(200).json(eventDetails)
+      res.status(200).json(eventDetails)
+    //   .then(() => {
+    // response.redirect("/events");
 
     } catch (error) {
         // console.error(error);

@@ -27,9 +27,10 @@ export default function LogIn() {
           )}
           {session && (
             <>
-              Signed in as {session.user.email} <br />
-              <button onClick={signOut}>sign out</button>
-              <Nav/>
+              {/* Signed in as {session.user.email} <br />
+              <button onClick={signOut}>sign out</button> */}
+            <Nav/>
+
             </>
           )}
         </main>

@@ -9,6 +9,7 @@ import {
   getAllUserData,
   getUserDataById,
   getUserProfileById,
+  //getUsersEventsbyUserId,
 } from "../../database/model";
 
 export async function getStaticPaths() {
@@ -30,43 +31,46 @@ export async function getStaticProps({ params }) {
   const userDataStr = JSON.stringify(userData);
   const userProfile = await getUserProfileById(params.idProfile);
   const userProfileStr = JSON.stringify(userProfile);
-  // const eventResponseDataByEventId = await getAllEventResponses(params.id);
-  // const eventResponseDataByEventIdStr = JSON.stringify(
-  //   eventResponseDataByEventId
-  // );
-
-  // const eventResponseCommenter = await getUsersNameFromComment(params.id);
-  // const eventResponseCommenterStr = JSON.stringify(eventResponseCommenter);
+  // const userEvents = await getUsersEventsbyUserId(params.idProfile);
+  // const userEventsStr = JSON.stringify(userEvents);
 
   return {
     props: {
       userDataStr,
       userProfileStr,
+      //userEventsStr,
     },
   };
 }
 
-export default function Profile({ userDataStr, userProfileStr }) {
+export default function Profile({
+  userDataStr,
+  userProfileStr,
+  //userEventsStr,
+}) {
   const [session, loading] = useSession();
   const [content, setContent] = useState();
 
   const userDataParsed = JSON.parse(userDataStr);
-  console.log("2", userDataParsed);
+  // console.log("2", userDataParsed);
 
   const userProfileParsed = JSON.parse(userProfileStr);
-  console.log("3", userProfileParsed);
+  // console.log("3", userProfileParsed);
 
-  // useEffect(() => {
-  //   const fetchData = async () => {
-  //     const res = await fetch("/api/secret");
-  //     const json = await res.json();
+  //const userEventsParsed = JSON.parse(userEventsStr);
+  // console.log("4", userEventsParsed);
 
-  //     if (json.content) {
-  //       setContent(json.content);
-  //     }
-  //   };
-  //   fetchData();
-  // }, [session]);
+  useEffect(() => {
+    const fetchData = async () => {
+      const res = await fetch("/api/secret");
+      const json = await res.json();
+
+      if (json.content) {
+        setContent(json.content);
+      }
+    };
+    fetchData();
+  }, [session]);
 
   if (typeof window !== "undefined" && loading) return null;
 
@@ -95,20 +99,24 @@ export default function Profile({ userDataStr, userProfileStr }) {
       <main>
         <div>
           <h1>{session.user.name}'s Profile</h1>
-          {userDataParsed && (
+          {userDataParsed && userProfileParsed && (
             <>
               <h3>Username</h3>
-              <p>{userDataParsed.username}</p>
-              {/* <h3>About Me</h3>
-              <p>{userData.profile.bio}</p>
+              <p>{userProfileParsed.username}</p>
+              <h3>About Me</h3>
+              <p>{userProfileParsed.bio}</p>
               <h3>Location</h3>
-              <p>{userData.profile.location}</p>
+              <p>{userProfileParsed.location}</p>
               <h3>Date of Birth</h3>
-              <p>{userData.profile.dob}</p>
+              <p>
+                {new Intl.DateTimeFormat("en-GB", {
+                  dateStyle: "full",
+                }).format(new Date(userProfileParsed.dob))}
+              </p>
               <h3>Gender</h3>
-              <p>{userData.profile.gender}</p>
+              <p>{userProfileParsed.gender}</p>
               <h3>My Events</h3>
-              <ul>
+              {/* <ul>
                 {userData.events.map((event) => (
                   <li key={event.id}>
                     {event.date} ({event.time})<br />
@@ -124,9 +132,6 @@ export default function Profile({ userDataStr, userProfileStr }) {
               </ul> */}
             </>
           )}
-          <br />
-          <br />
-          {/* <button onClick={handleClick}>Edit your profile</button> */}
         </div>
       </main>
       </div>

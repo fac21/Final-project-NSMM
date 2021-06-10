@@ -39,9 +39,10 @@
   display: flex;
   justify-content: space-around;
   align-items: center;
-  background-color: #fb9300;
   position: fixed;
   /* position: sticky; */
+  /* background-color: #fb9300; */
+  background-color: #fbba5c;
   margin-top: auto;
   /* position: absolute; */
   left: 0;
