@@ -120,7 +120,8 @@ function createEvent(
    date,
    time
  ) VALUES ($1, $2, $3,$4,$5,$6)
-  RETURNING user_id,
+  RETURNING
+  user_id
    interests_id,
    event_title,
    event_description,
@@ -137,10 +138,12 @@ function createEvent(
       date,
       time,
     ])
-    .then((result) => console.log(result)).catch((error) => { console.log(`error: ${error}`) })
-  // .then((res) => {
-  //   return res.rows;
-}
+    //.then((result) => console.log(result)).catch((error) => { console.log(`error: ${error}`) })
+    .then((res) => {
+      return res.rows;
+    })
+  }
+
 
 module.exports = {
   getAllInterestsData,
