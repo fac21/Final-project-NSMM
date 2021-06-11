@@ -2,9 +2,10 @@
 
 .header {
   font-family: "Dancing Script", BlinkMacSystemFont;
-  color: #fb9300;
+  color: #fbba5c;
   font-size: 3rem;
   text-align: center;
+  margin-bottom: -12px;
 }
 
 .profile {
@@ -41,7 +42,7 @@
   display: flex;
   justify-content: space-around;
   align-items: center;
-  position: sticky;
+  position: absolute;
   background-color: #fbba5c;
   margin-top: auto;
   left: 0;
@@ -60,16 +61,16 @@
   margin-bottom: 35px;
 }
 
-.title a {
+/* .title a {
   color: #0070f3;
   text-decoration: none;
-}
+} */
 
-.title a:hover,
+/* .title a:hover,
 .title a:focus,
 .title a:active {
   text-decoration: underline;
-}
+} */
 
 .title {
   margin: 0;

@@ -32,7 +32,13 @@ export default function Settings() {
           <Head>
             <title>{siteTitle} | Not Signed In</title>
           </Head>
-          <main>
+          <main className="styles.main">
+            <Image
+              src="/images/friends/True friends-bro.svg"
+              alt="picture of friends"
+              width={450}
+              height={450}
+            ></Image>
             <div>
               <h1>You aren't signed in, please sign in first</h1>
               <button>
@@ -49,10 +55,10 @@ export default function Settings() {
   return (
     <Layout>
       <Image
-        src="/images/friends/True Friends-bro.svg"
+        src="/images/friends/True friends-bro.svg"
         alt="picture of friends"
-        height={450}
         width={450}
+        height={450}
       ></Image>
       <div>
         <Head>
@@ -60,7 +66,6 @@ export default function Settings() {
         </Head>
         <main>
           <div>
-        
             <button onClick={signOut}>Log Out</button>
           </div>
         </main>
