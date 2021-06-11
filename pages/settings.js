@@ -65,8 +65,10 @@ export default function Settings() {
           <title>{siteTitle} | Settings</title>
         </Head>
         <main>
-          <div>
-            <button onClick={signOut}>Log Out</button>
+          <div className={styles.events}>
+            <button className={styles.buttonStyle} onClick={signOut}>
+              Log Out
+            </button>
           </div>
         </main>
       </div>

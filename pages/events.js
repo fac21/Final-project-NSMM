@@ -116,7 +116,9 @@ export default function Events({ eventData }) {
                             {meetup.time}
                           </p>
                           <p>
-                            <h4>Click here to read more</h4>
+                            <h4 className={styles.link}>
+                              Click here to read more
+                            </h4>
                           </p>
                         </div>
                         <hr className={styles.hrule}></hr>

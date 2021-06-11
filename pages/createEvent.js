@@ -103,7 +103,7 @@ export default function CreateEvent() {
             <form onSubmit={addEventToDb}>
               {/* onSubmit={addEventToDb} action="/api/createEvent" method="POST"*/}
               <div>
-                <label htmlFor="interest_id">Event Type</label>
+                <label htmlFor="interest_id">Event Type </label>
                 <select id="interest_id" name="interest_id" required>
                   <option value="2">Coffee</option>
                   <option value="1">Drink</option>
@@ -113,7 +113,7 @@ export default function CreateEvent() {
               </div>
               <br />
               <div>
-                <label htmlFor="event_title">Event Title</label>
+                <label htmlFor="event_title">Event Title </label>
                 <input
                   type="text"
                   id="event_title"
@@ -123,7 +123,7 @@ export default function CreateEvent() {
               </div>
               <br />
               <div>
-                <label htmlFor="location">Location</label>
+                <label htmlFor="location">Location </label>
                 <input
                   type="text"
                   id="location"
@@ -133,13 +133,13 @@ export default function CreateEvent() {
               </div>
               <br />
               <div>
-                <label htmlFor="date">Date</label>
+                <label htmlFor="date">Date </label>
                 <input type="date" id="date" name="date" required></input>
               </div>
               <br />
 
               <div>
-                <label htmlFor="time">Time</label>
+                <label htmlFor="time">Time </label>
                 <select name="time" id="time" required>
                   <option value="morning">Morning</option>
                   <option value="afternoon">Afternoon</option>
@@ -147,7 +147,7 @@ export default function CreateEvent() {
                 </select>
                 <br />
                 <div>
-                  <label htmlFor="event_description">Specify details</label>
+                  <label htmlFor="event_description">Specify details </label>
                   <textarea
                     type="text"
                     id="event_description"
