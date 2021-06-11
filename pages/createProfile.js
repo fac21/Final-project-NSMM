@@ -79,9 +79,9 @@ export default function CreateProfile() {
     );
   }
 
-  //  const handleClick = (e) => {
-  //   router.push("/events");
-  // };
+  const handleClick = (e) => {
+    router.push("/events");
+  };
 
   return (
     <Layout createProfile>
@@ -167,10 +167,14 @@ export default function CreateProfile() {
               <br />
               <textarea type="text" name="bio" id="bio" required></textarea>
             </div>
-            <button className={styles.buttonStyle} type="submit">
+            {/* <button type="submit">Submit</button> */}
+            <button
+              className={styles.buttonStyle}
+              onClick={handleClick}
+              type="submit"
+            >
               Submit
             </button>
-            {/* <button onClick={handleClick} type="submit">Submit</button> */}
           </form>
         </main>
       </div>
