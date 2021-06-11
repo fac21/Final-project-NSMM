@@ -100,8 +100,8 @@ INSERT INTO accounts (compound_id, user_id, provider_type, provider_id, provider
 ('decef9f7a683e28eb9b5538f97f6cf92923c843dd3238fd3ae1dda0f1c5cb422', 2, 'oauth', 'auth0', 'auth0|60bdf6c17634b50069321add', '64lXnBeY53_eaM8YPtph7pUv3PZb8BZq', '2021-06-07 11:59:59.129057+01', '2021-06-07 11:59:59.129057+01');
 
 INSERT INTO users(name, email, image, created_at, updated_at) VALUES
-('fac21testing', 'fac21testing@gmail.com', 'https://s.gravatar.com/avatar/8c6896d94c218a82e69b3d9cb4fd7713?s=480&r=pg&d=https%3A%2F%2Fcdn.auth0.com%2Favatars%2Ffa.png', '2021-06-07 11:58:23.807084+01', '2021-06-07 11:58:23.807084+01'),
-('fac21testing2', 'fac21testing2@gmail.com', 'https://s.gravatar.com/avatar/c1d1d7338d4df3abb4539002ef96519d?s=480&r=pg&d=https%3A%2F%2Fcdn.auth0.com%2Favatars%2Ffa.png', '2021-06-07 11:59:59.074831+01', '2021-06-07 11:59:59.074831+01');
+('Jo Smith', 'fac21testing@gmail.com', 'https://s.gravatar.com/avatar/8c6896d94c218a82e69b3d9cb4fd7713?s=480&r=pg&d=https%3A%2F%2Fcdn.auth0.com%2Favatars%2Ffa.png', '2021-06-07 11:58:23.807084+01', '2021-06-07 11:58:23.807084+01'),
+('Ashley Stewart', 'fac21testing2@gmail.com', 'https://s.gravatar.com/avatar/c1d1d7338d4df3abb4539002ef96519d?s=480&r=pg&d=https%3A%2F%2Fcdn.auth0.com%2Favatars%2Ffa.png', '2021-06-07 11:59:59.074831+01', '2021-06-07 11:59:59.074831+01');
 
 INSERT INTO interests(interest_name, interest_icon) VALUES
 ('Go for a Drink', 'https://storyset.com/illustration/outdoor-party/bro'),
@@ -120,7 +120,7 @@ INSERT INTO event_response (user_id, response_content, event_id) VALUES
 (1, 'Looking forward to having a beer after a long week – see you there!', 2)
 ;
 
-INSERT INTO user_profiles(user_id, username, password, dob, gender, interests_id, location, bio) VALUES (1, 'chumUser1', 'chumUser1', '1980-01-01', 'male', (ARRAY[1,2, 4]), 'London', 'I like coding and would like to meet for coffee or a pint'), (2, 'chumUser2', 'chumUser2', '1980-01-01', 'female', (ARRAY[1,2,3]), 'London', 'I love hiking and nature and would be keen to mix this up with meeting for the odd coffee')
+INSERT INTO user_profiles(user_id, username, dob, gender, interests_id, location, bio) VALUES (1, 'smithy1', '1980-01-01', 'male', (ARRAY[1,2, 4]), 'London', 'I like coding and would like to meet for coffee or a pint'), (2, 'Ash1', '1980-01-01', 'female', (ARRAY[1,2,3]), 'London', 'I love hiking and nature and would be keen to mix this up with meeting for the odd coffee')
 ;
 
 

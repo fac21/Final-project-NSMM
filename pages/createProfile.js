@@ -10,8 +10,8 @@ import { useRouter } from "next/router";
 export default function CreateProfile() {
   const router = useRouter();
 
-  const addProfileToDb = (event) =>{
-  event.preventDefault(); // don't redirect the page
+  const addProfileToDb = (event) => {
+    event.preventDefault(); // don't redirect the page
     // where we'll add our form logic
     return fetch("/api/createProfile", {
       body: JSON.stringify({
@@ -71,10 +71,9 @@ export default function CreateProfile() {
     );
   }
 
-  //  const handleClick = (e) => {
-  //   router.push("/events");
-  // };
-
+  const handleClick = (e) => {
+    router.push("/events");
+  };
 
   return (
     <Layout createProfile>
@@ -87,7 +86,6 @@ export default function CreateProfile() {
             <h1>Hey {session.user.name}!</h1>
             <h2>Welcome to Chummy</h2>
             <p>
-
               <strong>Please create your user profile:</strong>
             </p>
           </div>
@@ -161,8 +159,10 @@ export default function CreateProfile() {
               <br />
               <textarea type="text" name="bio" id="bio" required></textarea>
             </div>
-            <button type="submit">Submit</button>
-            {/* <button onClick={handleClick} type="submit">Submit</button> */}
+            {/* <button type="submit">Submit</button> */}
+            <button onClick={handleClick} type="submit">
+              Submit
+            </button>
           </form>
         </main>
       </div>
