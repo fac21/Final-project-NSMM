@@ -19,7 +19,6 @@ export async function getServerSideProps() {
 }
 
 export default function Events({ eventData }) {
-  console.log(`eventData: ${eventData}`);
   const [session, loading] = useSession();
   const [content, setContent] = useState();
 

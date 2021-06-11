@@ -22,9 +22,11 @@ export default function Layout({ children }) {
         <meta name="og:title" content={siteTitle} />
         <meta name="twitter:card" content="summary_large_image" />
       </Head>
-
-      <h1 className={styles.header}>chummy</h1>
-
+      <Link href="/events">
+        <a>
+        <h1 className={styles.header}>Chummy</h1>
+        </a>
+      </Link>
       <main className={styles.main}>{children}</main>
     </div>
   );

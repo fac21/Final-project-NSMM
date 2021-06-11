@@ -13,10 +13,10 @@ import { useState, useEffect } from "react";
 import { useSession } from "next-auth/client";
 import Image from "next/image";
 import Link from "next/link";
+import { useRouter } from "next/router";
 
 export async function getStaticPaths() {
   const events = await getAllEventsData();
-  console.log(events);
   const paths = events.map(({ id }) => {
     return {
       params: { id: id.toString() },
@@ -32,16 +32,17 @@ export async function getStaticPaths() {
 export async function getStaticProps({ params }) {
   const eventData = await getEventById(params.id);
   const eventDataStr = JSON.stringify(eventData);
-
-  console.log(`eventData.user_id:${eventData.user_id}`);
+  // console.log(`eventData.user_id:${eventData.user_id}`);
 
   const userDataById = await getUserDataById(eventData.user_id);
-  // console.log(`userDataById: ${userDataById}`);
   const userDataByIdStr = JSON.stringify(userDataById);
 
   const eventResponseDataByEventId = await getAllEventResponses(params.id);
   const eventResponseDataByEventIdStr = JSON.stringify(
     eventResponseDataByEventId
+  );
+  console.log(
+    `eventResponseDataByEventIdStr: ${eventResponseDataByEventIdStr}`
   );
 
   const eventResponseCommenter = await getUsersNameFromComment(params.id);
@@ -63,13 +64,33 @@ export default function Event({
   eventResponseDataByEventIdStr,
   eventResponseCommenterStr,
 }) {
+
+ const router = useRouter();
+
+  const addEventResponseToDb = (event) =>{
+  event.preventDefault(); // don't redirect the page
+    // where we'll add our form logic
+    return fetch("/api/createResponse", {
+      body: JSON.stringify({
+        //  test:  'hi'
+        response_content: event.target.response_content.value
+      }),
+      headers: {
+        "Content-Type": "application/json",
+      },
+      method: "POST",
+    });
+
+    //const result = res.json();
+  };
+
   const eventDataParsed = JSON.parse(eventDataStr);
   const userDataParsed = JSON.parse(userDataByIdStr);
   const eventResponseDataParsed = JSON.parse(eventResponseDataByEventIdStr);
-
+console.log(`eventResponseDataParsed: ${eventResponseDataParsed}`);
   // user name who commented
   const eventResponseCommenter = JSON.parse(eventResponseCommenterStr);
-  console.log(eventResponseCommenter);
+  // console.log(eventResponseCommenter);
 
   const gbDate = new Date(eventDataParsed.date);
   const ourDate = new Intl.DateTimeFormat("en-GB", {
@@ -151,11 +172,11 @@ export default function Event({
                 <strong>Comments</strong>
               </p>
             </div>
-            <form action="/events">
-              <label htmlFor="response"></label>
+            <form onSubmit={addEventResponseToDb}>
+              <label htmlFor="response_content"></label>
               <textarea
-                id="response"
-                name="response"
+                id="response_content"
+                name="response_content"
                 rows="6"
                 cols="50"
                 placeholder="Add a public comment"
