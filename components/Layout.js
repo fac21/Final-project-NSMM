@@ -23,7 +23,7 @@ export default function Layout({ children }) {
         <meta name="twitter:card" content="summary_large_image" />
       </Head>
 
-      <h1 className={styles.header}>chummy</h1>
+      <h1 className={styles.header}>Chummy</h1>
 
       <main className={styles.main}>{children}</main>
     </div>

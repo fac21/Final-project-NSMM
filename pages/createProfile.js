@@ -6,6 +6,8 @@ import Layout, { siteTitle } from "../components/Layout";
 import { useState, useEffect } from "react";
 import { options, useSession } from "next-auth/client";
 import { useRouter } from "next/router";
+import Image from "next/image";
+import styles from "../styles/Home.module.css";
 
 export default function CreateProfile() {
   const router = useRouter();
@@ -57,9 +59,15 @@ export default function CreateProfile() {
             <title>{siteTitle} | Not Signed In</title>
           </Head>
           <main>
+            <Image
+              src="/images/friends/Ethnic friendship-bro.svg"
+              alt="picture of friends"
+              width={450}
+              height={450}
+            ></Image>
             <div>
               <h1>You aren't signed in, please sign in first</h1>
-              <button>
+              <button className={styles.buttonStyle}>
                 <Link href="/">
                   <a>Click here for the log in page</a>
                 </Link>
@@ -160,7 +168,11 @@ export default function CreateProfile() {
               <textarea type="text" name="bio" id="bio" required></textarea>
             </div>
             {/* <button type="submit">Submit</button> */}
-            <button onClick={handleClick} type="submit">
+            <button
+              className={styles.buttonStyle}
+              onClick={handleClick}
+              type="submit"
+            >
               Submit
             </button>
           </form>

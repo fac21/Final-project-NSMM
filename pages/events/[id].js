@@ -100,10 +100,10 @@ export default function Event({
           <Head>
             <title>{siteTitle.title} | Not Signed In</title>
           </Head>
-          <main>
-            <div>
+          <main className={styles.main}>
+            <div className={styles.events}>
               <h1>You aren't signed in, please sign in first</h1>
-              <button>
+              <button className={styles.buttonStyle}>
                 <Link href="/">
                   <a>Click here for the log in page</a>
                 </Link>
@@ -118,7 +118,7 @@ export default function Event({
   return (
     <>
       <Layout>
-        <div className={styles.container}>
+        <div className>
           <Head>
             <title>{siteTitle.title} | Single event</title>
           </Head>
@@ -160,7 +160,9 @@ export default function Event({
                 cols="50"
                 placeholder="Add a public comment"
               ></textarea>
-              <button type="submit">Submit</button>
+              <button className={styles.buttonStyle} type="submit">
+                Submit
+              </button>
             </form>
 
             <div className="styles.events">
