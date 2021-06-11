@@ -172,7 +172,9 @@ console.log(`eventResponseDataParsed: ${eventResponseDataParsed}`);
                 <strong>Comments</strong>
               </p>
             </div>
-            <form onSubmit={addEventResponseToDb}>
+            <form
+            onSubmit={addEventResponseToDb}
+            >
               <label htmlFor="response_content"></label>
               <textarea
                 id="response_content"

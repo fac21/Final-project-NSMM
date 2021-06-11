@@ -41,7 +41,7 @@ export default function LogIn() {
                 height={450}
               ></Image>
               <h2 className={stylesLayout.main}>
-                Friendships not relationships
+                Friendships <i>not</i>relationships
               </h2>
               {/* Signed in as {session.user.email} <br />
               <button onClick={signOut}>sign out</button> */}
