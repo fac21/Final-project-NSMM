@@ -47,7 +47,7 @@ export default function Events({ eventData }) {
           <main>
             <div>
               <h1>You aren't signed in, please sign in first</h1>
-              <button>
+              <button className={styles.buttonStyle}>
                 <Link href="/">
                   <a>Click here for the log in page</a>
                 </Link>
@@ -66,17 +66,25 @@ export default function Events({ eventData }) {
       <Layout home>
         <div>
           <Head>
-            <title>{siteTitle} | Chumboard</title>
+            <title>{siteTitle} | Events</title>
           </Head>
           <main className={styles.main}>
-            <h1 className={styles.title}>Chumboard</h1>
-            <Link href="/createEvent">
-              <a>
-                <button>Create Event</button>
-              </a>
-            </Link>
-
+            <Image
+              src="/images/friends/Outdoor Party-bro.svg"
+              alt="picture of friends"
+              height={200}
+              width={200}
+            ></Image>
+            <div className={styles.eventsBtn}>
+              <h1 className={styles.title}>Events</h1>
+              <Link href="/createEvent">
+                <a>
+                  <button className={styles.buttonStyle}>Add Event</button>
+                </a>
+              </Link>
+            </div>
             <div className="styles.events">
+              <hr className={styles.hrule}></hr>
               {eventsArray.map((meetup) => {
                 const gbDate = new Date(meetup.date);
                 const ourDate = new Intl.DateTimeFormat("en-GB", {
@@ -91,25 +99,29 @@ export default function Events({ eventData }) {
                           {/* <p>{meetup.interests_id}</p> */}
                           <p>
                             {" "}
-                            <strong>Event: </strong> {meetup.event_title}
+                            <h2 className={styles.h2Style}>Event: </h2>{" "}
+                            {meetup.event_title}
                           </p>
                           {/* <p>{meetup.created_at}</p> */}
                           <p>
                             {" "}
-                            <strong>Location</strong>: {meetup.location}
+                            <h2 className={styles.h2Style}>Location:</h2>{" "}
+                            {meetup.location}
                           </p>
                           <p>
-                            <strong>Date:</strong> {ourDate}
+                            <h2 className={styles.h2Style}>Date:</h2> {ourDate}
                           </p>
                           <p>
-                            <strong>Time: </strong>
+                            <h2 className={styles.h2Style}>Time: </h2>
                             {meetup.time}
                           </p>
                           <p>
-                            <strong>Click here to read more</strong>
+                            <h4 className={styles.link}>
+                              Click here to read more
+                            </h4>
                           </p>
                         </div>
-                        <hr></hr>
+                        <hr className={styles.hrule}></hr>
                       </a>
                     </Link>
                   </>

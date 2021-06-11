@@ -7,6 +7,7 @@ import { useSession } from "next-auth/client";
 import Nav from "../components/Nav";
 import Layout, { siteTitle } from "../components/Layout";
 import { useRouter } from "next/router";
+import Image from "next/image";
 
 export default function MyProfile() {
   const [session, loading] = useSession();
@@ -45,7 +46,7 @@ export default function MyProfile() {
           <main>
             <div>
               <h1>You aren't signed in, please sign in first</h1>
-              <button>
+              <button className={styles.buttonStyle}>
                 <Link href="/">
                   <a>Click here for the log in page</a>
                 </Link>
@@ -69,7 +70,13 @@ export default function MyProfile() {
           <title>{siteTitle} | My Profile</title>
         </Head>
         <main className={styles.main}>
-          <div>
+          <Image
+            src="/images/friends/Ethnic friendship-bro.svg"
+            alt="picture of friends"
+            width={250}
+            height={250}
+          ></Image>
+          <div className={styles.events}>
             <h1>{session.user.name}'s Profile</h1>
             {userData && (
               <>
@@ -90,7 +97,7 @@ export default function MyProfile() {
                 <h3>My Events</h3>
                 <ul>
                   {userData.events.map((event) => (
-                    <li key={event.id}>
+                    <li className={styles.lists} key={event.id}>
                       {new Intl.DateTimeFormat("en-GB", {
                         dateStyle: "full",
                       }).format(new Date(event.date))}
@@ -100,14 +107,18 @@ export default function MyProfile() {
                       {event.event_description}
                       <br />
                       <Link href="/events/[id]" as={`events/${event.id}`}>
-                        <a><strong>Click here to visit this event page</strong> </a>
+                        <a className={styles.link}>
+                          <strong>Click here to visit this event page</strong>{" "}
+                        </a>
                       </Link>
                     </li>
                   ))}
                 </ul>
                 <br />
                 <br />
-                <button onClick={handleClick}>Edit your profile</button>
+                <button className={styles.buttonStyle} onClick={handleClick}>
+                  Edit your profile
+                </button>
               </>
             )}
           </div>

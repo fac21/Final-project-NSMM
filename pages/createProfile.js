@@ -6,12 +6,14 @@ import Layout, { siteTitle } from "../components/Layout";
 import { useState, useEffect } from "react";
 import { options, useSession } from "next-auth/client";
 import { useRouter } from "next/router";
+import Image from "next/image";
+import styles from "../styles/Home.module.css";
 
 export default function CreateProfile() {
   const router = useRouter();
 
-  const addProfileToDb = (event) =>{
-  event.preventDefault(); // don't redirect the page
+  const addProfileToDb = (event) => {
+    event.preventDefault(); // don't redirect the page
     // where we'll add our form logic
     return fetch("/api/createProfile", {
       body: JSON.stringify({
@@ -57,9 +59,15 @@ export default function CreateProfile() {
             <title>{siteTitle} | Not Signed In</title>
           </Head>
           <main>
+            <Image
+              src="/images/friends/Ethnic friendship-bro.svg"
+              alt="picture of friends"
+              width={450}
+              height={450}
+            ></Image>
             <div>
               <h1>You aren't signed in, please sign in first</h1>
-              <button>
+              <button className={styles.buttonStyle}>
                 <Link href="/">
                   <a>Click here for the log in page</a>
                 </Link>
@@ -75,7 +83,6 @@ export default function CreateProfile() {
   //   router.push("/events");
   // };
 
-
   return (
     <Layout createProfile>
       <div>
@@ -87,7 +94,6 @@ export default function CreateProfile() {
             <h1>Hey {session.user.name}!</h1>
             <h2>Welcome to Chummy</h2>
             <p>
-
               <strong>Please create your user profile:</strong>
             </p>
           </div>
@@ -161,7 +167,9 @@ export default function CreateProfile() {
               <br />
               <textarea type="text" name="bio" id="bio" required></textarea>
             </div>
-            <button type="submit">Submit</button>
+            <button className={styles.buttonStyle} type="submit">
+              Submit
+            </button>
             {/* <button onClick={handleClick} type="submit">Submit</button> */}
           </form>
         </main>
