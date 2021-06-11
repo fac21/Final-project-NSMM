@@ -32,6 +32,8 @@ export default function LogIn() {
                 <button className={styles.buttonStyle} onClick={signIn}>
                   Sign In
                 </button>
+                <br />
+                <br />
               </div>
 
               <BlankNav />
@@ -48,6 +50,12 @@ export default function LogIn() {
               <h2 className={stylesLayout.main}>
                 Friendships <i>not</i>relationships
               </h2>
+              <br />
+
+              <br />
+
+              <br />
+
               {/* Signed in as {session.user.email} <br />
               <button onClick={signOut}>sign out</button> */}
               <Nav />

@@ -43,7 +43,7 @@
   display: flex;
   justify-content: space-around;
   align-items: center;
-  position: absolute;
+  position: fixed;
   background-color: #fbba5c;
   margin-top: auto;
   left: 0;

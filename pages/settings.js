@@ -41,7 +41,7 @@ export default function Settings() {
             ></Image>
             <div>
               <h1>You aren't signed in, please sign in first</h1>
-              <button>
+              <button className={styles.buttonStyle}>
                 <Link href="/">
                   <a>Click here for the log in page</a>
                 </Link>
@@ -69,6 +69,7 @@ export default function Settings() {
             <button className={styles.buttonStyle} onClick={signOut}>
               Log Out
             </button>
+            <br />
           </div>
         </main>
       </div>
